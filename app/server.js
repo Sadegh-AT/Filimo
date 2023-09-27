@@ -15,7 +15,7 @@ class Application {
     this.errorHandler();
   }
   configServer() {
-    // process.env.PORT, process.env.DB_URL;
+
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(morgan("dev"));
