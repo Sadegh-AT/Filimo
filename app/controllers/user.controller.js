@@ -2,7 +2,7 @@ const { UserModel } = require("../models/user.model");
 
 async function getAllUser(req, res, next) {
   try {
-    const result = await UserModel.find({});
+    const result = await UserModel.find({}).limit(10).sort({ createdAt: -1 });
     res.json(result);
   } catch (error) {
     next(error);
