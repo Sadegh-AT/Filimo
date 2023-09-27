@@ -1,51 +1,47 @@
+const morgan = require("morgan");
+const { NotFoundError, ErrorHandler } = require("./utils/error-handler");
+const { connectToMongo } = require("./utils/monoose.connection");
 const express = require("express");
+const { AllRoutes } = require("./routers/routes");
 
 const app = express();
-const users = [
-  {
-    id: 1,
-    name: "John Smith",
-    username: "jsmith123",
-    age: 30,
-  },
-  {
-    id: 2,
-    name: "Sarah Johnson",
-    username: "sarahj",
-    age: 28,
-  },
-  {
-    id: 3,
-    name: "Michael Brown",
-    username: "mikeb",
-    age: 35,
-  },
-  {
-    id: 4,
-    name: "Emily Davis",
-    username: "emdavis",
-    age: 25,
-  },
-  {
-    id: 5,
-    name: "David Wilson",
-    username: "davidw88",
-    age: 32,
-  },
-  {
-    id: 6,
-    name: "Lisa Rodriguez",
-    username: "lisarod",
-    age: 29,
-  },
-  // Continue adding more user objects as needed...
-];
-app.get("/users", (req, res) => {
-  res.json(users);
-});
-app.get("/users/:id", (req, res) => {
-  res.json(users.filter((item) => item.id == req.params.id));
-});
-app.listen(3000, () => {
-  console.log("Server Run on Port 3000");
-});
+
+class Application {
+  constructor(PORT, DB_URL) {
+    this.configServer();
+    this.configDatabase(DB_URL);
+    this.createServer(PORT);
+    this.createRoutes();
+    this.errorHandler();
+  }
+  configServer() {
+
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+    app.use(morgan("dev"));
+  }
+
+  configDatabase(DB_URL) {
+    connectToMongo(DB_URL);
+  }
+
+  createServer(PORT) {
+    app.listen(PORT, () => {
+      console.log(`Server Run on Port: ${PORT}`);
+    });
+  }
+
+  createRoutes() {
+    app.get("/", (req, res) => {
+      res.json("s");
+    });
+    app.use(AllRoutes);
+  }
+
+  errorHandler() {
+    app.use(NotFoundError);
+    app.use(ErrorHandler);
+  }
+}
+
+module.exports = Application;
