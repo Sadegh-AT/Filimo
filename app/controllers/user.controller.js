@@ -1,9 +1,9 @@
 const { UserModel } = require("../models/user.model");
 
-async function getAllUser(res, req, next) {
+async function getAllUser(req, res, next) {
   try {
     const result = await UserModel.find({});
-    console.log(result);
+    res.json(result);
   } catch (error) {
     next(error);
   }
