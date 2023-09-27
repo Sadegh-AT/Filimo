@@ -2,7 +2,8 @@ const morgan = require("morgan");
 const { NotFoundError, ErrorHandler } = require("./utils/error-handler");
 const { connectToMongo } = require("./utils/monoose.connection");
 const express = require("express");
-// const { AllRoutes } = require("./router/router");
+const { AllRoutes } = require("./routers/routes");
+
 const app = express();
 
 class Application {
@@ -10,7 +11,7 @@ class Application {
     this.configServer();
     this.configDatabase(DB_URL);
     this.createServer(PORT);
-    // this.createRoutes();
+    this.createRoutes();
     this.errorHandler();
   }
   configServer() {
@@ -30,12 +31,12 @@ class Application {
     });
   }
 
-  // createRoutes() {
-  //   app.get("/", (req, res) => {
-  //     res.json("s");
-  //   });
-  //   app.use(AllRoutes);
-  // }
+  createRoutes() {
+    app.get("/", (req, res) => {
+      res.json("s");
+    });
+    app.use(AllRoutes);
+  }
 
   errorHandler() {
     app.use(NotFoundError);
