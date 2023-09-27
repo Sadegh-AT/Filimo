@@ -3,7 +3,7 @@ const { NotFoundError, ErrorHandler } = require("./utils/error-handler");
 const { connectToMongo } = require("./utils/monoose.connection");
 const express = require("express");
 const { AllRoutes } = require("./routers/routes");
-
+const cors = require("cors");
 const app = express();
 
 class Application {
@@ -15,7 +15,7 @@ class Application {
     this.errorHandler();
   }
   configServer() {
-
+    app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(morgan("dev"));
