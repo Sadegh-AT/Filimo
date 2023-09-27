@@ -1,0 +1,5 @@
+{
+  "platform": "node",
+  "app": "nodejs-starter",
+  "port": 3000
+}
