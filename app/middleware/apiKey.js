@@ -6,10 +6,8 @@ function apiKeyMiddleware(req, res, next) {
     }
     next();
   } catch (error) {
-    next();
+    next(error);
   }
 }
 
-module.exports = {
-  apiKeyMiddleware,
-};
+module.exports = { apiKeyMiddleware };

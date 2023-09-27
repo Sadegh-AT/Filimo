@@ -1,4 +1,5 @@
 const { default: mongoose } = require("mongoose");
+const PersianDate = require("../utils/persianDate");
 
 const userSchema = new mongoose.Schema(
   {
@@ -8,6 +9,11 @@ const userSchema = new mongoose.Schema(
     username: { type: String, required: true, unique: true },
     phone: { type: String, required: true, unique: true },
     isSubscription: { type: Boolean, required: true, default: false },
+    registerDate: {
+      type: String,
+      required: true,
+      default: "",
+    },
     roles: { type: Array, default: ["USER"] },
     password: { type: String, required: true },
     watched_movie: { type: Array, default: [] },
