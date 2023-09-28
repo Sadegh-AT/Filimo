@@ -6,6 +6,7 @@ const { AllRoutes } = require("./routers/routes");
 const cors = require("cors");
 const app = express();
 const path = require("path");
+const { read } = require("fs");
 
 class Application {
   constructor(PORT, DB_URL) {
