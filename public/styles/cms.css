@@ -1,7 +1,7 @@
 body {
 	font-family: IRANSansX;
     overflow-x: hidden;
-    background: #F9FAFB;
+    background: #242424;
     direction: rtl;
 }
 
@@ -14,8 +14,8 @@ img {
 }
 
 .header {
-    background: #FFF;
-    box-shadow: 0 5px 8px -3px rgba(166, 196, 198, .35);
+    background: #171717;
+    border-bottom: 1px solid #CB7C05;
     height: 70px;
 }
 
@@ -37,7 +37,7 @@ img {
 .admin-profile {
     display: flex;
     align-items: center;
-    border-right: 1px solid #727272;
+    justify-content: end;
 }
 
 .admin-profile__photo {
@@ -55,4 +55,5 @@ img {
     color: #727272;
     font-weight: 600;
     font-size: .9rem;
+    user-select: none;
 }
