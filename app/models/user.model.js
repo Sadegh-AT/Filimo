@@ -1,6 +1,5 @@
 const { default: mongoose } = require("mongoose");
 
-
 const userSchema = new mongoose.Schema(
   {
     first_name: { type: String, required: true },
@@ -16,9 +15,9 @@ const userSchema = new mongoose.Schema(
     },
     roles: { type: Array, default: ["USER"] },
     password: { type: String, required: true },
-    watched_movie: { type: Array, default: [] },
-    liked_movie: { type: Array, default: [] },
-    comments: { type: Array, default: [] },
+    watched_movie: { type: Array, default: [mongoose.Types.ObjectId] },
+    liked_movie: { type: Array, default: [mongoose.Types.ObjectId] },
+    comments: { type: Array, default: [mongoose.Types.ObjectId] },
   },
   {
     timestamps: true,
