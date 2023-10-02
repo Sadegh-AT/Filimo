@@ -1,7 +1,7 @@
 body {
 	font-family: IRANSansX;
     overflow-x: hidden;
-    background: #F9FAFB;
+    background: #242424;
     direction: rtl;
 }
 
@@ -14,8 +14,8 @@ img {
 }
 
 .header {
-    background: #FFF;
-    box-shadow: 0 5px 8px -3px rgba(166, 196, 198, .35);
+    background: #171717;
+    box-shadow: 0 5px 8px -3px hsla(0, 0%, 0%, 0.2);
     height: 70px;
 }
 
@@ -30,20 +30,16 @@ img {
     justify-content: space-between;
 }
 
-.menu-icon {
-    cursor: pointer;
-}
-
 .admin-profile {
     display: flex;
     align-items: center;
-    border-right: 1px solid #727272;
+    justify-content: end;
 }
 
 .admin-profile__photo {
     border-radius: 50%;
     outline: 1px solid gray;
-    margin: 0 12px;
+    margin-left: .9rem;
 }
 
 .admin-profile__photo img {
@@ -51,8 +47,54 @@ img {
     margin: 2px;
 }
 
-.admin-profile__name span{
+.admin-profile__name span {
     color: #727272;
     font-weight: 600;
     font-size: .9rem;
+    user-select: none;
 }
+
+.navbar {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 500;
+    background: #171717;
+    width: 260px;   
+    border-left: 1px solid #4b4747;
+}
+
+.navbar__box {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar__box__logo {
+    margin-top: 1rem;
+}
+
+.navbar__box__ul {
+    margin-top: 8rem;
+    padding: 0;
+}
+
+.navbar__box__ul__items {
+    margin-top: 1rem;
+}
+
+.navbar__box__ul__items span {
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: .2rem;
+}
+
+/* #242424 */
