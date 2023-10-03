@@ -1,10 +1,14 @@
+const { validationResult } = require("express-validator");
 const { UserModel } = require("../models/user.model");
 const { hashPassword, comparePassword } = require("../utils/hash-password");
 const PersianDate = require("../utils/persianDate");
 const { signToken } = require("../utils/token-generator");
+const { validatorHandler } = require("../utils/error-handler");
 
 async function register(req, res, next) {
   try {
+    const error = validationResult(req);
+    if (error?.errors?.length > 0) throw validatorHandler(error);
     const { first_name, last_name, email, username, phone, password } =
       req.body;
     const result = await UserModel.create({
@@ -18,7 +22,16 @@ async function register(req, res, next) {
     });
     res.json(result);
   } catch (error) {
-    next(error);
+    if (error.code === 11000) {
+      // Customize the duplicate key error message
+      next({
+        message: `Email "${Object.keys(
+          error.keyValue
+        )}" is already in use. Please choose a different value.`,
+      });
+    } else {
+      next(error);
+    }
   }
 }
 async function login(req, res, next) {
