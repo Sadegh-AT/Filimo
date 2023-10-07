@@ -13,6 +13,13 @@ img {
     box-shadow: none;
 }
 
+input:focus{
+    outline: none;
+    color: #fff;
+}
+
+/* header styles */
+
 .header {
     background: #171717;
     box-shadow: 0 5px 8px -3px hsla(0, 0%, 0%, 0.2);
@@ -118,6 +125,25 @@ img {
 
 .navbar__box__ul__items:hover.navbar__box__ul__items {
     border-right: 3px solid #F89401;
+}
+
+.search-box {
+    background: #242424;
+    padding: 2px;
+    border-radius: 17px;
+    width: 83%;
+}
+
+.search-box input {
+    width: 80%;
+    border: none;
+    caret-color: #fff;
+    background: transparent;
+}
+
+.search-box button {
+    background: transparent;
+    border: none;
 }
 
 /* #242424 */
