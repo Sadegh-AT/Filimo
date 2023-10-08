@@ -4,6 +4,7 @@ const { hashPassword, comparePassword } = require("../utils/hash-password");
 const PersianDate = require("../utils/persianDate");
 const { signToken } = require("../utils/token-generator");
 const { validatorHandler } = require("../utils/error-handler");
+const createError = require("http-errors");
 
 async function register(req, res, next) {
   try {
@@ -24,11 +25,13 @@ async function register(req, res, next) {
   } catch (error) {
     if (error.code === 11000) {
       // Customize the duplicate key error message
-      next({
-        message: `Email "${Object.keys(
-          error.keyValue
-        )}" is already in use. Please choose a different value.`,
-      });
+      next(
+        createError.BadRequest(
+          `Email "${Object.keys(
+            error.keyValue
+          )}" is already in use. Please choose a different value.`
+        )
+      );
     } else {
       next(error);
     }
@@ -38,7 +41,7 @@ async function login(req, res, next) {
   try {
     const { phone, password } = req.body;
     const user = await UserModel.findOne({ phone });
-    if (!user) throw { status: 401, message: "phone or password is incorrect" };
+    if (!user) throw createError.Unauthorized("phone or password is incorrect");
 
     if (comparePassword(password, user.password)) {
       const token = signToken({
