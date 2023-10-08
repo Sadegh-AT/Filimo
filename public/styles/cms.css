@@ -146,5 +146,54 @@ input:focus{
     border: none;
 }
 
+/* main styles  */
+
+.main {
+    max-width: 1600px;
+    position: fixed;
+    left: 32px;
+    right: 290px;
+    top: 102px;
+    bottom: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #171717;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.main__content {
+    width: 96%;
+    height: 93%;
+    overflow-y: auto;
+}
+
+/* users table styles */
+
+th,td {
+    text-align: center;
+}
+
+.main__content::-webkit-scrollbar{
+    width: 8px;
+}
+
+ .main__content::-webkit-scrollbar-track {
+    background: #727272; 
+}
+   
+.main__content::-webkit-scrollbar-thumb {
+    background: #F89401; 
+}
+  
+.main__content::-webkit-scrollbar-thumb:hover {
+    background: #a06000; 
+}
+
+.edit-user {
+    cursor: pointer;
+}
+
 /* #242424 */
 /* F89401 */
