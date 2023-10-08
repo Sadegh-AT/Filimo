@@ -13,6 +13,13 @@ img {
     box-shadow: none;
 }
 
+input:focus{
+    outline: none;
+    color: #fff;
+}
+
+/* header styles */
+
 .header {
     background: #171717;
     box-shadow: 0 5px 8px -3px hsla(0, 0%, 0%, 0.2);
@@ -87,14 +94,106 @@ img {
 }
 
 .navbar__box__ul__items {
-    margin-top: 1rem;
+    margin-top: 1.1rem;
+    border-radius: 7px;
+    padding: 5px 15px;
+    cursor: pointer;
 }
 
 .navbar__box__ul__items span {
     color: #fff;
-    cursor: pointer;
     text-decoration: none;
-    margin-right: .2rem;
+    margin-right: .26rem;
+    font-weight: 500;
+}
+
+.navbar__box__ul__items span , .navbar__box__ul__items span svg {
+    transition: all 0.5s;
+}
+
+.navbar__box__ul__items {
+    transition: all 0.1s;
+}
+
+.navbar__box__ul__items:hover.navbar__box__ul__items span svg {
+    fill: #F89401;
+}
+
+.navbar__box__ul__items:hover.navbar__box__ul__items span {
+    color: #F89401;
+}
+
+.navbar__box__ul__items:hover.navbar__box__ul__items {
+    border-right: 3px solid #F89401;
+}
+
+.search-box {
+    background: #242424;
+    padding: 2px;
+    border-radius: 17px;
+    width: 83%;
+}
+
+.search-box input {
+    width: 80%;
+    border: none;
+    caret-color: #fff;
+    background: transparent;
+}
+
+.search-box button {
+    background: transparent;
+    border: none;
+}
+
+/* main styles  */
+
+.main {
+    max-width: 1600px;
+    position: fixed;
+    left: 32px;
+    right: 290px;
+    top: 102px;
+    bottom: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #171717;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.main__content {
+    width: 96%;
+    height: 93%;
+    overflow-y: auto;
+}
+
+/* users table styles */
+
+th,td {
+    text-align: center;
+}
+
+.main__content::-webkit-scrollbar{
+    width: 8px;
+}
+
+ .main__content::-webkit-scrollbar-track {
+    background: #727272; 
+}
+   
+.main__content::-webkit-scrollbar-thumb {
+    background: #F89401; 
+}
+  
+.main__content::-webkit-scrollbar-thumb:hover {
+    background: #a06000; 
+}
+
+.edit-user {
+    cursor: pointer;
 }
 
 /* #242424 */
+/* F89401 */
