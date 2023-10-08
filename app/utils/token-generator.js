@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const createError = require("http-errors");
+
 require("dotenv").config();
 const secret = process.env.SECRET;
 
@@ -9,10 +11,7 @@ function verifyToken(token) {
   try {
     return jwt.verify(token, secret);
   } catch (error) {
-    throw {
-      status: 401,
-      message: "token is invalid, please login",
-    };
+    throw createError.InternalServerError(error.message);
   }
 }
 module.exports = {

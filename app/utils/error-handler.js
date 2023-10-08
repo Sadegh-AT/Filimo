@@ -1,11 +1,6 @@
+const createError = require("http-errors");
 const NotFoundError = (req, res, next) => {
-  return res.status(404).json({
-    statusCode: res.statusCode,
-    error: {
-      type: "Not Found",
-      message: `not found ${req.url} route`,
-    },
-  });
+  next(createError.NotFound(`Not Found Route => ${req.url}`));
 };
 function validatorHandler(error) {
   const obj = {
