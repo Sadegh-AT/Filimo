@@ -25,22 +25,13 @@ async function getAllUser(req, res, next) {
 }
 async function getUser(req, res, next) {
   try {
-    const user = await UserModel.findById(req.params.id);
-    const newUser = {
-      id: user._id,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email: user.email,
-      username: user.username,
-      phone: user.phone,
-      isSubscription: user.isSubscription,
-      registerDate: user.registerDate,
-      roles: user.roles,
-      watched_movie: user.watched_movie,
-      liked_movie: user.liked_movie,
-      comments: user.comments,
-    };
-    res.send(newUser);
+    const user = await UserModel.findById(req.params.id, {
+      password: 0,
+      createdAt: 0,
+      updatedAt: 0,
+    });
+
+    res.send(user);
   } catch (error) {
     next(error);
   }
