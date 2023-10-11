@@ -1,5 +1,6 @@
 async function createComment(req, res, next) {
-    const {}
+  const { text } = req.body;
+  res.send("");
 }
 async function getAllComment(req, res, next) {}
 async function searchComment(req, res, next) {}
