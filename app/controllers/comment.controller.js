@@ -39,7 +39,18 @@ async function searchComment(req, res, next) {
     next(error);
   }
 }
-async function deleteCommentById(req, res, next) {}
+async function deleteCommentById(req, res, next) {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const resault = await CommentModel.deleteOne({ _id: id });
+    if (resault.deletedCount == 0)
+      throw createError.BadRequest("Comment not found for delete");
+    res.send({ message: "Delete Successfully" });
+  } catch (error) {
+    next(error);
+  }
+}
 module.exports = {
   createComment,
   getAllComment,
