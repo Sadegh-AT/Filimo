@@ -1,5 +1,6 @@
 const CommentModel = require("../models/comment.model");
 const PersianDate = require("../utils/persianDate");
+const createError = require("http-errors");
 
 async function createComment(req, res, next) {
   const { text } = req.body;
@@ -14,9 +15,17 @@ async function createComment(req, res, next) {
     movieId: null,
   };
   await CommentModel.create(comment);
-  res.send("Comment Created");
+  res.send({ message: "Comment Created" });
 }
-async function getAllComment(req, res, next) {}
+async function getAllComment(req, res, next) {
+  try {
+    const comments = await CommentModel.find({}, { __v: 0 });
+    res.send(comments);
+    next();
+  } catch (error) {
+    next(createError.InternalServerError(error.message));
+  }
+}
 async function searchComment(req, res, next) {}
 async function deleteCommentById(req, res, next) {}
 module.exports = {
