@@ -6,7 +6,6 @@ async function createComment(req, res, next) {
   const { text } = req.body;
   const { _id, first_name, last_name } = req.user;
 
-  // const { movieId } = req.movie;
   const comment = {
     userId: _id,
     fullName: `${first_name} ${last_name}`,
@@ -21,12 +20,25 @@ async function getAllComment(req, res, next) {
   try {
     const comments = await CommentModel.find({}, { __v: 0 });
     res.send(comments);
-    next();
   } catch (error) {
     next(createError.InternalServerError(error.message));
   }
 }
-async function searchComment(req, res, next) {}
+async function searchComment(req, res, next) {
+  try {
+    let { text } = req.query;
+    text = text.toString().replace("+", " ").trim();
+    const reg = new RegExp(text, "gi");
+    const comments = await CommentModel.find({}, { __v: 0, movieId: 0 });
+
+    const searchedComment = comments.filter((comment) =>
+      comment.text.match(reg)
+    );
+    res.send(searchedComment);
+  } catch (error) {
+    next(error);
+  }
+}
 async function deleteCommentById(req, res, next) {}
 module.exports = {
   createComment,

@@ -27,7 +27,7 @@ async function verifyAccessToken(req, res, next) {
         updatedAt: 0,
       }
     );
-    console.log(user);
+
     req.user = user;
     next();
   } catch (error) {
