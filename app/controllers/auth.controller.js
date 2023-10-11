@@ -52,7 +52,7 @@ async function login(req, res, next) {
         isSubscription: user.isSubscription,
         loginTime: new PersianDate().now(),
       });
-      console.log(token);
+      
       const tokenStratgy = `Bearer ${token}`;
 
       res.cookie("jwtToken", tokenStratgy, { maxAge: 900000, httpOnly: true });

@@ -6,6 +6,7 @@ const router = require("express").Router();
 
 router.use("/user", userRoutes);
 router.use("/auth", authRoutes);
+router.use("/comment");
 
 module.exports = {
   AllRoutes: router,
