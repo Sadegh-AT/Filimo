@@ -45,14 +45,13 @@ async function login(req, res, next) {
 
     if (comparePassword(password, user.password)) {
       const token = signToken({
-        id: user._id,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
         isSubscription: user.isSubscription,
         loginTime: new PersianDate().now(),
       });
-      console.log(token);
+      
       const tokenStratgy = `Bearer ${token}`;
 
       res.cookie("jwtToken", tokenStratgy, { maxAge: 900000, httpOnly: true });
