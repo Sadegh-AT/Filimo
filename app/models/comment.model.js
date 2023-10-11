@@ -6,5 +6,6 @@ const commentSchema = new mongoose.Schema({
   date: { type: Date, default: "" },
   movies: { type: mongoose.Types.ObjectId, ref: "movies", required: true },
 });
+const CommentModel = mongoose.model("comments", commentSchema);
 
-module.exports = mongoose.model("comments", commentSchema);
+module.exports = CommentModel;
