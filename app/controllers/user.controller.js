@@ -1,26 +1,27 @@
+const { validationResult } = require("express-validator");
 const { UserModel } = require("../models/user.model");
+const createError = require("http-errors");
+const { validatorHandler } = require("../utils/error-handler");
 async function getAllUser(req, res, next) {
   try {
-    await UserModel.find({})
-      .limit(10)
-      .sort({ createdAt: -1 })
-      .exec((error, results) => {
-        if (!error) {
-          const newRes = results.map((doc) => ({
-            id: doc._id,
-            first_name: doc.first_name,
-            last_name: doc.last_name,
-            email: doc.email,
-            username: doc.username,
-            registerDate: doc.registerDate,
-            phone: doc.phone,
-            isSubscription: doc.isSubscription,
-          }));
-          res.json(newRes);
-        }
-      });
+    const users = await UserModel.aggregate([
+      {
+        $sort: { createdAt: -1 },
+      },
+      {
+        $project: {
+          fullName: { $concat: ["$first_name", " ", "$last_name"] },
+          email: 1,
+          username: 1,
+          phone: 1,
+          isSubscription: 1,
+          registerDate: 1,
+        },
+      },
+    ]);
+    res.send(users);
   } catch (error) {
-    next(error);
+    next(createError.InternalServerError(error.message));
   }
 }
 async function getUser(req, res, next) {
@@ -29,9 +30,44 @@ async function getUser(req, res, next) {
       password: 0,
       createdAt: 0,
       updatedAt: 0,
+      roles: 0,
     });
 
     res.send(user);
+  } catch (error) {
+    next(createError.InternalServerError(error.message));
+  }
+}
+async function deleteUserById(req, res, next) {
+  try {
+    const { id } = req.params;
+    const resault = await UserModel.deleteOne({ _id: id });
+    if (resault.deletedCount == 0)
+      throw createError.BadRequest("Comment not found for delete");
+    res.send({ message: "Delete Successfully" });
+  } catch (error) {
+    next(createError.InternalServerError(error.message));
+  }
+}
+async function editUser(req, res, next) {
+  try {
+    const error = validationResult(req);
+    if (error?.errors?.length > 0) throw validatorHandler(error);
+    const { first_name, last_name, email, username, phone, isSubscription } =
+      req.body;
+    const { id } = req.params;
+    await UserModel.updateOne(
+      { _id: id },
+      {
+        first_name,
+        last_name,
+        email,
+        username,
+        phone,
+        isSubscription,
+      }
+    );
+    res.send({ message: "Update User Successfully" });
   } catch (error) {
     next(error);
   }
@@ -40,4 +76,6 @@ async function getUser(req, res, next) {
 module.exports = {
   getAllUser,
   getUser,
+  deleteUserById,
+  editUser,
 };

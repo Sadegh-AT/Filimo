@@ -6,8 +6,8 @@ const { userRoutes } = require("./user.routes");
 
 const router = require("express").Router();
 
-router.use("/user", userRoutes);
 router.use("/auth", authRoutes);
+router.use("/user", verifyAccessToken, userRoutes);
 router.use("/comment", verifyAccessToken, commentRoutes);
 
 module.exports = {
