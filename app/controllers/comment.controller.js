@@ -1,4 +1,5 @@
 const CommentModel = require("../models/comment.model");
+const { UserModel } = require("../models/user.model");
 const PersianDate = require("../utils/persianDate");
 const createError = require("http-errors");
 
@@ -13,7 +14,11 @@ async function createComment(req, res, next) {
     date: new PersianDate().now(),
     movieId: null,
   };
-  await CommentModel.create(comment);
+  const commentMongo = await CommentModel.create(comment);
+  await UserModel.findOneAndUpdate(
+    { _id },
+    { $push: { comments: commentMongo._id } }
+  );
   res.send({ message: "Comment Created" });
 }
 async function getAllComment(req, res, next) {
@@ -28,6 +33,7 @@ async function searchComment(req, res, next) {
   try {
     let { text } = req.query;
     text = text.toString().replace("+", " ").trim();
+    if (!text) throw createError.BadRequest("please enter text");
     const reg = new RegExp(text, "gi");
     const comments = await CommentModel.find({}, { __v: 0, movieId: 0 });
 
@@ -51,9 +57,20 @@ async function deleteCommentById(req, res, next) {
     next(error);
   }
 }
+async function getUserComments(req, res, nex) {
+  const { comments } = req.user;
+  console.log(comments);
+
+  const userComments = await CommentModel.find(
+    { _id: { $in: comments } },
+    { __v: 0, fullName: 0, userId: 0 }
+  );
+  res.send(userComments);
+}
 module.exports = {
   createComment,
   getAllComment,
   searchComment,
   deleteCommentById,
+  getUserComments,
 };

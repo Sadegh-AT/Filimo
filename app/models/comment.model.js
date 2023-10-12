@@ -11,8 +11,7 @@ const commentSchema = new mongoose.Schema({
     default: null,
   },
 });
+commentSchema.index({ text: "text" });
 const CommentModel = mongoose.model("comments", commentSchema);
 
 module.exports = CommentModel;
-
-// 65238968d3f48a92a8d0b5a4

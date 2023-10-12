@@ -1,3 +1,4 @@
+
 const {
   getAllUser,
   getUser,
@@ -11,6 +12,7 @@ const router = require("express").Router();
 
 router.get("/", getAllUser);
 router.get("/find/:id", getUser);
+
 router.delete("/delete/:id", checkAdminAccess, deleteUserById);
 router.put("/edit/:id", editUserValidator(), editUser);
 
