@@ -39,6 +39,8 @@ async function register(req, res, next) {
 }
 async function login(req, res, next) {
   try {
+    const error = validationResult(req);
+    if (error?.errors?.length > 0) throw validatorHandler(error);
     const { phone, password } = req.body;
     const user = await UserModel.findOne({ phone });
     if (!user) throw createError.Unauthorized("phone or password is incorrect");
@@ -51,7 +53,7 @@ async function login(req, res, next) {
         isSubscription: user.isSubscription,
         loginTime: new PersianDate().now(),
       });
-      
+
       const tokenStratgy = `Bearer ${token}`;
 
       res.cookie("jwtToken", tokenStratgy, { maxAge: 900000, httpOnly: true });
