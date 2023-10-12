@@ -219,5 +219,13 @@ th,td {
     cursor: pointer;
 }
 
+.comments-box {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: ltr;
+}
+
 /* #242424 */
 /* F89401 */
