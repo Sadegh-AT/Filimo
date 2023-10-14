@@ -1,6 +1,6 @@
 const $ = document;
 
-// toggle tabs
+// side navbar toggle tabs
 
 let tabBtns = $.querySelectorAll(".navbar__box__ul__items");
 let tabContents = $.querySelectorAll(".content");
@@ -21,3 +21,9 @@ for (let i = 0; i < tabBtns.length ;i++) {
   });
 
 }
+
+// comments modal
+
+// let commentsModal = $.querySelector(".comments-modal");
+// let commentsModal = $.querySelector(".comments-modal");
+let closeModalBtn = $.querySelector(".close-modal");

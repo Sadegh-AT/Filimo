@@ -93,7 +93,7 @@ input:focus{
     top: 0;
     bottom: 0;
     right: 0;
-    z-index: 500;
+    z-index: 400;
     background: #171717;
     width: 260px;   
     border-left: 1px solid #4b4747;
@@ -219,12 +219,77 @@ th,td {
     cursor: pointer;
 }
 
+/* comments table styles */
+
 .comments-box {
     max-width: 300px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     direction: ltr;
+    cursor: pointer;
+}
+
+.comments-modal {
+    width: 600px;
+    height: auto;
+    max-height: 400px;
+    background: #242424;
+    position: relative;
+    z-index: 1111;
+    right: 478px;
+    top: 55px;
+    overflow-y: auto;
+}
+
+.comments-modal__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 15px;
+    padding-top: 8px;
+    border-bottom: 1px solid gray;
+}
+
+.comments-modal__head__title {
+    color: aliceblue;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+.close-modal {
+    margin-bottom: 9px;
+    cursor: pointer;
+}
+
+.comments-modal__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 15px;
+}
+
+.comments-modal__body__content {
+    color: #fff;
+    text-align: right;
+}
+
+
+
+/* Blure dark layer styles */
+
+.layer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 400;
+    visibility: hidden;
+    background-color: rgba(0,0,0,.4);
+    opacity: 0;
+    backdrop-filter: blur(6px);
+    transition: opacity .5s cubic-bezier(.19,1,.22,1),visibility 0s cubic-bezier(.19,1,.22,1) .5s,z-index 0s cubic-bezier(.19,1,.22,1) .5s,top 0s cubic-bezier(.19,1,.22,1) .5s;
 }
 
 /* #242424 */
