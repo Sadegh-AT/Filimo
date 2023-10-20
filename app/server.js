@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
-
+const session = require("express-session");
 class Application {
   constructor(PORT, DB_URL) {
     this.configServer();

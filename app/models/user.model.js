@@ -1,4 +1,5 @@
 const { default: mongoose } = require("mongoose");
+const { commentSchema } = require("./comment.model");
 
 const userSchema = new mongoose.Schema(
   {
@@ -29,7 +30,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     watched_movie: { type: Array, default: [mongoose.Types.ObjectId] },
     liked_movie: { type: Array, default: [mongoose.Types.ObjectId] },
-    comments: { type: Array, default: [mongoose.Types.ObjectId] },
+    comments: { type: [mongoose.Types.ObjectId] },
   },
   {
     timestamps: true,
@@ -37,7 +38,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const UserModel = mongoose.model("user", userSchema);
+const UserModel = mongoose.model("users", userSchema);
 
 module.exports = {
   UserModel,
