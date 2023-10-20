@@ -4,6 +4,7 @@ const createError = require("http-errors");
 const { validatorHandler } = require("../utils/error-handler");
 async function getAllUser(req, res, next) {
   try {
+   
     const users = await UserModel.aggregate([
       {
         $sort: { createdAt: -1 },

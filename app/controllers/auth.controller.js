@@ -54,10 +54,16 @@ async function login(req, res, next) {
         loginTime: new PersianDate().now(),
       });
 
-      const tokenStratgy = `Bearer ${token}`;
+      // const tokenStratgy = `Bearer ${token}`;
 
-      res.cookie("jwtToken", tokenStratgy, { maxAge: 900000, httpOnly: true });
-      res.send({ message: "login successfully" });
+      // res.cookie("jwtToken", tokenStratgy, {
+      //   maxAge: 900000,
+      //   httpOnly: true,
+      //   path: "/",
+      //   domain: "localhost",
+      // });
+
+      res.send({ message: "login successfully", token: token });
     }
   } catch (error) {
     next(error);
