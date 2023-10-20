@@ -4,7 +4,6 @@ const createError = require("http-errors");
 const { validatorHandler } = require("../utils/error-handler");
 async function getAllUser(req, res, next) {
   try {
-   
     const users = await UserModel.aggregate([
       {
         $sort: { createdAt: -1 },
@@ -52,20 +51,21 @@ async function deleteUserById(req, res, next) {
 }
 async function editUser(req, res, next) {
   try {
-    const error = validationResult(req);
-    if (error?.errors?.length > 0) throw validatorHandler(error);
+    // const error = validationResult(req);
+    // if (error?.errors?.length > 0) throw validatorHandler(error);
     const { first_name, last_name, email, username, phone, isSubscription } =
       req.body;
     const { id } = req.params;
+    const user = await UserModel.findById({ _id: id });
     await UserModel.updateOne(
       { _id: id },
       {
-        first_name,
-        last_name,
-        email,
-        username,
-        phone,
-        isSubscription,
+        first_name: first_name ? first_name : user.first_name,
+        last_name: last_name ? last_name : user.last_name,
+        email: email ? email : user.email,
+        username: username ? username : user.username,
+        phone: phone ? phone : user.phone,
+        isSubscription: isSubscription ? isSubscription : user.isSubscription,
       }
     );
     res.send({ message: "Update User Successfully" });

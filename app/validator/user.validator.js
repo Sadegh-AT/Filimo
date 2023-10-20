@@ -4,18 +4,15 @@ const editUserValidator = () => [
   body("first_name")
     .matches(/^[\p{L}\s]*$/u)
     .isString()
-    .trim()
-    .notEmpty(),
+    .trim(),
   body("last_name")
     .matches(/^[\p{L}\s]*$/u)
     .isString()
-    .trim()
-    .notEmpty(),
+    .trim(),
   body("email").isEmail().withMessage("Ensure email value is unique"),
   body("username")
     .matches(/^[A-Za-z0-9_]+$/)
     .trim()
-    .notEmpty()
     .withMessage("Ensure username value is unique"),
 
   body("phone")
