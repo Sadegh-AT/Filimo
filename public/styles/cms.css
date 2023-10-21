@@ -22,6 +22,10 @@ th,td {
     text-align: center;
 }
 
+svg {
+    cursor: pointer;
+}
+
 /* header styles */
 
 .header {
@@ -194,6 +198,8 @@ th,td {
 
 .main-container {
     width: 96%;
+    height: 96%;
+    overflow-y: auto;
 }
 
 .content {
@@ -298,8 +304,10 @@ th,td {
     background-color: rgba(0,0,0,.4);
     opacity: 0;
     backdrop-filter: blur(6px);
-    transition: opacity .5s cubic-bezier(.19,1,.22,1),visibility 0s cubic-bezier(.19,1,.22,1) .5s,z-index 0s cubic-bezier(.19,1,.22,1) .5s,top 0s cubic-bezier(.19,1,.22,1) .5s;
+    transition: opacity .3s cubic-bezier(.19,1,.22,1),visibility 0s cubic-bezier(.19,1,.22,1) .3s,z-index 0s cubic-bezier(.19,1,.22,1) .3s,top 0s cubic-bezier(.19,1,.22,1) .3s;
 }
 
-/* #242424 */
-/* F89401 */
+.active {
+    visibility: visible;
+    opacity: 1;
+}
