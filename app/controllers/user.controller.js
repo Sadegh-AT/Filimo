@@ -51,10 +51,11 @@ async function deleteUserById(req, res, next) {
 }
 async function editUser(req, res, next) {
   try {
-    // const error = validationResult(req);
-    // if (error?.errors?.length > 0) throw validatorHandler(error);
+    const error = validationResult(req);
+    if (error?.errors?.length > 0) throw validatorHandler(error);
     const { first_name, last_name, email, username, phone, isSubscription } =
       req.body;
+    console.log(first_name, last_name, email, username, phone, isSubscription);
     const { id } = req.params;
     const user = await UserModel.findById({ _id: id });
     await UserModel.updateOne(
