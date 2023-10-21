@@ -3,7 +3,8 @@ const { verifyToken } = require("../utils/token-generator");
 const { UserModel } = require("../models/user.model");
 async function verifyAccessToken(req, res, next) {
   try {
-    const authorization = req.cookies?.jwtToken;
+    const authorization = req.headers?.authorization;
+
     if (!authorization) throw createError.Unauthorized("Please login");
     const [bearer, token] = authorization.split(" ");
     if (bearer && bearer.toLowerCase() !== "bearer")
