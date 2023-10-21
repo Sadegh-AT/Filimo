@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- css reset -->
+    <!-- CSS reset -->
     <link rel="stylesheet" href="./../styles/CSS reset/reset.css">
-    <!-- bootstrap -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="./../styles/Bootstrap/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="./../styles/Bootstrap/bootstrap.min.css">    
-    <!-- fonts -->
+    <!-- Fonts -->
     <link rel="stylesheet" href="./../fonts/fontiran.css">
-    <!-- main styles for CMS -->
+    <!-- Main styles for CMS -->
     <link rel="stylesheet" href="./../styles/cms.css">
 
     <title>Filimo</title>
@@ -23,16 +23,8 @@
     <header class="header">
         <div class="container">
             <div class="header__box row">
-                <div class="col-4"></div>
-                <div class="col-6">
-                    <form class="search-box">
-                        <button>
-                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"><path d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-8 6a8 8 0 1 1 14.32 4.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 0 1 2 10z" fill="#F89401"></path></svg>
-                        </button>
-                        <input type="text" placeholder="">
-                    </form>
-                </div>
-                <div class="col-2">
+                <div class="col"></div>
+                <div class="col">
                     <div class="admin-profile">
                         <div class="admin-profile__photo">
                             <img src="./../img/admin.jpg" alt="admin-profile" width="40" height="40">
@@ -46,7 +38,7 @@
         </div>
     </header>
     
-    <!-- side navbar -->
+    <!-- Side navbar -->
 
     <nav class="navbar">
         <div class="navbar__box">
@@ -54,7 +46,7 @@
                 <img src="./../img/fa-filimo-dark-logo.png" alt="filimo-logo" width="100" height="100">
             </div>
             <ul class="navbar__box__ul"> 
-                <li class="navbar__box__ul__items">
+                <li class="navbar__box__ul__items active">
                     <span>
                         <svg fill="#fff" width="27px" height="27px" viewBox="0 0 16 16">
                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
@@ -156,200 +148,118 @@
         </div>
     </nav>
 
-    <!-- page content box -->
+    <!-- Page content box -->
 
     <main class="main">
-        <div class="main__content">
+        <div class="main-container">
+            <div class="search-box">
+                <form>
+                    <button>
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"><path d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-8 6a8 8 0 1 1 14.32 4.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 0 1 2 10z" fill="#F89401"></path></svg>
+                    </button>
+                    <input type="text" placeholder="دنبال چی میگردی ؟!">
+                </form>
+            </div>
 
-            <!-- users table -->
+            <!-- Users table -->
+            <div class="users-box">
+                <table class="users-table content table table-striped table-dark active">
+                    <thead>
+                        <tr>
+                            <th scope="col">Delete</th>         
+                            <th scope="col">Edit</th>
+                            <th scope="col">Register date</th>
+                            <th scope="col">Subscription</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">User name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Full name</th>
+                        </tr>
+                    </thead>
+                    <tbody class="users-table__body">
+                        <!-- Users items -->
+                    </tbody>
+                </table>
+            </div>
 
-            <table class="table table-striped table-dark">
+            <!-- Comments
+
+            <table class="content table table-striped table-dark">
                 <thead>
                     <tr>
-                        <th scope="col">edit</th>
-                        <th scope="col">register date</th>
-                        <th scope="col">subscription</th>
-                        <th scope="col">phone</th>
-                        <th scope="col">user name</th>
-                        <th scope="col">email</th>
-                        <th scope="col">full name</th>
+                        <th scope="col">Reject</th>
+                        <th scope="col">Accept</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Name of movie/series</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Full name</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
+                        <td>
+                            <span>Reject</span>
                         </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
+                        <td>
+                            <span>Accept</span>
+                        </td>
+                        <td class="comments-box">is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
+                        <td>GOT</td>
+                        <td>1402/6/29</td>
                         <td>sadegh ghasemi</td>
                     </tr>
                     <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
+                        <td>
+                            <span>Reject</span>
                         </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
+                        <td>
+                            <span>Accept</span>
+                        </td>
+                        <td class="comments-box">is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
+                        <td>GOT</td>
+                        <td>1402/6/29</td>
                         <td>sadegh ghasemi</td>
                     </tr>
                     <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
+                        <td>
+                            <span>Reject</span>
                         </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
+                        <td>
+                            <span>Accept</span>
                         </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
-                        <td>sadegh ghasemi</td>
-                    </tr>
-                    <tr scope="row">
-                        <td class="edit-user">
-                            <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny" ><path d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"/></svg>
-                        </td>
-                        <td>1400/6/23</td>
-                        <td>true</td>
-                        <td>0903254163</td>
-                        <td>sadeghAT</td>
-                        <td>sadegh@gmail.come</td>
+                        <td class="comments-box">is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
+                        <td>GOT</td>
+                        <td>1402/6/29</td>
                         <td>sadegh ghasemi</td>
                     </tr>
 
                 </tbody>
-            </table>
+            </table> -->
+
         </div>
     </main>
 
+    <!-- Comments modal -->
 
-    
-    
+    <div class="comments-modal">
+        <div class="comments-modal__head">
+            <span class="close-modal">
+                <svg width="25px" height="25px" viewBox="0 0 16 16">
+                    <path fill="#a06000" fill-rule="#a06000" d="M11.2929,3.29289 C11.6834,2.90237 12.3166,2.90237 12.7071,3.29289 C13.0976,3.68342 13.0976,4.31658 12.7071,4.70711 L9.41421,8 L12.7071,11.2929 C13.0976,11.6834 13.0976,12.3166 12.7071,12.7071 C12.3166,13.0976 11.6834,13.0976 11.2929,12.7071 L8,9.41421 L4.70711,12.7071 C4.31658,13.0976 3.68342,13.0976 3.29289,12.7071 C2.90237,12.3166 2.90237,11.6834 3.29289,11.2929 L6.58579,8 L3.29289,4.70711 C2.90237,4.31658 2.90237,3.68342 3.29289,3.29289 C3.68342,2.90237 4.31658,2.90237 4.70711,3.29289 L8,6.58579 L11.2929,3.29289 Z"/>
+                </svg>
+            </span>
+            <h3 class="comments-modal__head__title">Full text</h3>
+        </div>
+        <div class="comments-modal__body">
+            <span class="comments-modal__body__content">is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </span>
+        </div>
+    </div>
+
+
+    <!-- BLURE DARK LAYER -->
+    <div class="layer"></div>
+
     <script src="./../scripts/cms.js"></script>  
 </body>
 </html>
