@@ -19,7 +19,6 @@
 <body>
 
     <!-- Header -->
-
     <header class="header">
         <div class="container">
             <div class="header__box row">
@@ -39,7 +38,6 @@
     </header>
     
     <!-- Side navbar -->
-
     <nav class="navbar">
         <div class="navbar__box">
             <div class="navbar__box__logo"> 
@@ -149,41 +147,29 @@
     </nav>
 
     <!-- Page content box -->
-
     <main class="main">
         <div class="main-container">
-            <div class="search-box">
-                <form>
-                    <button>
-                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"><path d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-8 6a8 8 0 1 1 14.32 4.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 0 1 2 10z" fill="#F89401"></path></svg>
-                    </button>
-                    <input type="text" placeholder="دنبال چی میگردی ؟!">
-                </form>
-            </div>
 
             <!-- Users table -->
-            <div class="users-box">
-                <table class="users-table content table table-striped table-dark active">
-                    <thead>
-                        <tr>
-                            <th scope="col">Delete</th>         
-                            <th scope="col">Edit</th>
-                            <th scope="col">Register date</th>
-                            <th scope="col">Subscription</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">User name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Full name</th>
-                        </tr>
-                    </thead>
-                    <tbody class="users-table__body">
-                        <!-- Users items -->
-                    </tbody>
-                </table>
-            </div>
+            <table class="content active users-table table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Delete</th>         
+                        <th scope="col">Edit</th>
+                        <th scope="col">Register date</th>
+                        <th scope="col">Subscription</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">User name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Full name</th>
+                    </tr>
+                </thead>
+                <tbody class="users-table__body">
+                    <!-- Users items -->
+                </tbody>
+            </table>
 
-            <!-- Comments
-
+            <!-- Comments -->
             <table class="content table table-striped table-dark">
                 <thead>
                     <tr>
@@ -234,7 +220,7 @@
                     </tr>
 
                 </tbody>
-            </table> -->
+            </table>
 
         </div>
     </main>
@@ -245,27 +231,34 @@
     <!-- Comments modal -->
 
     <div class="comments-modal">
-        <div class="comments-modal__head">
+        <div class="modal__head">
+            <h3 class="modal__head__title">Full text</h3>
             <span class="close-modal__head__btn">
                 <svg width="25px" height="25px" viewBox="0 0 16 16">
                     <path fill="#a06000" fill-rule="#a06000" d="M11.2929,3.29289 C11.6834,2.90237 12.3166,2.90237 12.7071,3.29289 C13.0976,3.68342 13.0976,4.31658 12.7071,4.70711 L9.41421,8 L12.7071,11.2929 C13.0976,11.6834 13.0976,12.3166 12.7071,12.7071 C12.3166,13.0976 11.6834,13.0976 11.2929,12.7071 L8,9.41421 L4.70711,12.7071 C4.31658,13.0976 3.68342,13.0976 3.29289,12.7071 C2.90237,12.3166 2.90237,11.6834 3.29289,11.2929 L6.58579,8 L3.29289,4.70711 C2.90237,4.31658 2.90237,3.68342 3.29289,3.29289 C3.68342,2.90237 4.31658,2.90237 4.70711,3.29289 L8,6.58579 L11.2929,3.29289 Z"/>
                 </svg>
             </span>
-            <h3 class="comments-modal__head__title">Full text</h3>
         </div>
-        <div class="comments-modal__body">
+        <div class="modal__body">
             <span class="comments-modal__body__content">is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
             </span>
         </div>
     </div>
 
-    <!-- Users modal -->
-    <div class="users-modal">
-        <div class="users-modal__head">
-
+    <!-- Edit users modal -->
+    <div class="edit-users-modal">
+        <div class="modal__head">
+            <h3 class="modal__head__title">Full text</h3>
+            <span class="close-modal__head__btn">
+                <svg width="25px" height="25px" viewBox="0 0 16 16">
+                    <path fill="#a06000" fill-rule="#a06000" d="M11.2929,3.29289 C11.6834,2.90237 12.3166,2.90237 12.7071,3.29289 C13.0976,3.68342 13.0976,4.31658 12.7071,4.70711 L9.41421,8 L12.7071,11.2929 C13.0976,11.6834 13.0976,12.3166 12.7071,12.7071 C12.3166,13.0976 11.6834,13.0976 11.2929,12.7071 L8,9.41421 L4.70711,12.7071 C4.31658,13.0976 3.68342,13.0976 3.29289,12.7071 C2.90237,12.3166 2.90237,11.6834 3.29289,11.2929 L6.58579,8 L3.29289,4.70711 C2.90237,4.31658 2.90237,3.68342 3.29289,3.29289 C3.68342,2.90237 4.31658,2.90237 4.70711,3.29289 L8,6.58579 L11.2929,3.29289 Z"/>
+                </svg>
+            </span>
         </div>
-        <div class="users-modal__body">
+        <div class="modal__body">
+            <div >
 
+            </div>
         </div>
     </div>
 
@@ -275,3 +268,12 @@
     <script src="./../scripts/cms.js"></script>  
 </body>
 </html>
+
+<!-- <div class="search-box">
+    <form>
+        <button>
+            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"><path d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-8 6a8 8 0 1 1 14.32 4.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 0 1 2 10z" fill="#F89401"></path></svg>
+        </button>
+        <input type="text" placeholder="دنبال چی میگردی ؟!">
+    </form>
+</div> -->

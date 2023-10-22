@@ -3,6 +3,7 @@ body {
     overflow-x: hidden;
     background: #242424;
     direction: rtl;
+    overflow-y: hidden;
 }
 
 img {
@@ -99,6 +100,7 @@ svg {
 
 /* Sidenav menu  */
 .navbar {
+    overflow-y: auto;
     position: fixed;
     display: flex;
     flex-wrap: wrap;
@@ -135,7 +137,7 @@ svg {
     border-radius: 7px;
     padding: 5px 15px;
     cursor: pointer;
-}    
+} 
 
 .navbar__box__ul__items span {
     color: #fff;
@@ -174,12 +176,28 @@ svg {
 
 .navbar__box__ul__items.active.navbar__box__ul__items span {
     color: #F89401;
-}    
+}  
+
+.navbar::-webkit-scrollbar{
+    width: 8px;
+}
+
+ .navbar::-webkit-scrollbar-track {
+    background: #727272; 
+}
+   
+.navbar::-webkit-scrollbar-thumb {
+    background: #F89401; 
+}
+  
+.navbar::-webkit-scrollbar-thumb:hover {
+    background: #a06000; 
+}
 
 /* Main styles  */
 .main {
     max-width: 1600px;
-    position: fixed;
+    position: absolute;
     left: 32px;
     right: 290px;
     top: 102px;
@@ -194,7 +212,7 @@ svg {
 
 .main-container {
     width: 96%;
-    height: 96%;
+    height: 90%;
     overflow-y: auto;
 }
 
@@ -207,24 +225,19 @@ svg {
 }
 
 /* Users table styles */
-.users-box{
-    overflow-y: auto;
-    height: 544px;
-}
-
-.users-box::-webkit-scrollbar{
+.main-container::-webkit-scrollbar{
     width: 8px;
 }
 
- .users-box::-webkit-scrollbar-track {
+ .main-container::-webkit-scrollbar-track {
     background: #727272; 
 }
    
-.users-box::-webkit-scrollbar-thumb {
+.main-container::-webkit-scrollbar-thumb {
     background: #F89401; 
 }
   
-.users-box::-webkit-scrollbar-thumb:hover {
+.main-container::-webkit-scrollbar-thumb:hover {
     background: #a06000; 
 }
 
@@ -243,12 +256,16 @@ svg {
 }
 
 /* MODALS */
-.users-modal.open-modal {
+.edit-users-modal.open-modal {
+    transform: translate3d(0,-50%,0);
+}
+
+.comments-modal.open-modal {
     transform: translate3d(0,-50%,0);
 }
 
 /* Users edit modal styles */
-.users-modal {
+.edit-users-modal {
     width: 800px;
     height: 500px;
     background: #242424;
@@ -282,7 +299,7 @@ svg {
     transition: transform .5s cubic-bezier(.19,1,.22,1);
 }
 
-.comments-modal__head {
+.modal__head {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -291,7 +308,7 @@ svg {
     border-bottom: 1px solid gray;
 }
 
-.comments-modal__head__title {
+.modal__head__title {
     color: aliceblue;
     font-size: 1.5rem;
     user-select: none;
@@ -302,10 +319,10 @@ svg {
     cursor: pointer;
 }
 
-.comments-modal__body {
+.modal__body {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin: 10px 15px;
 }
 

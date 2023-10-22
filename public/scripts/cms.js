@@ -3,14 +3,28 @@ const layer = $.querySelector(".layer");
 
 const tabBtns = $.querySelectorAll(".navbar__box__ul__items");
 const tabContents = $.querySelectorAll(".content");
-const activeBtn = null;
-const activeContent = null;
+let activeBtn = null;
+let activeContent = null;
 
 const usersBox = $.querySelector(".users-box");
 const usersTableBody = $.querySelector(".users-table__body");
 
-const usersModal = $.querySelector(".users-modal");
+const editUsersModal = $.querySelector(".edit-users-modal");
 const commentsModal = $.querySelector(".comments-modal");
+const closeModalBtn = $.querySelectorAll(".close-modal__head__btn");
+
+////////// Side navbar toggle tabs
+for (let i = 0; i < tabBtns.length; i++) {
+
+  tabBtns[i].addEventListener("click", () => {
+    activeBtn = $.querySelector(".active.navbar__box__ul__items");
+    activeContent = $.querySelector(".active.content");
+    activeBtn.classList.remove("active");
+    activeContent.classList.remove("active");
+    tabBtns[i].classList.add("active");
+    tabContents[i].classList.add("active");
+  });
+}
 
 ////////// GET TOKEN for API requests
 const authorData = {
@@ -30,19 +44,6 @@ async function authorLogin (authorData) {
 }
 authorLogin (authorData)
 
-////////// Side navbar toggle tabs
-for (let i = 0; i < tabBtns.length; i++) {
-
-  tabBtns[i].addEventListener("click", () => {
-    activeBtn = $.querySelector(".active.navbar__box__ul__items");
-    activeContent = $.querySelector(".active.content");
-    activeBtn.classList.remove("active");
-    activeContent.classList.remove("active");
-    tabBtns[i].classList.add("active");
-    tabContents[i].classList.add("active");
-  });
-}
-
 ////////// GET all users
 async function getUsers (token) {
 
@@ -52,8 +53,8 @@ async function getUsers (token) {
         Authorization: token,
       },
     });
-    const posts = await res.json();
-    usersTableGerator (posts);
+    const allUsers = await res.json();
+    usersTableGerator (allUsers);
 }
 
 ////////// Add users to table
@@ -104,24 +105,24 @@ function removeLayer () {
 ////////// Remove layer by click on layer
 layer.addEventListener("click", () => {
   removeLayer()
-
-  usersModal.classList.remove("open-modal")
+  editUsersModal.classList.remove("open-modal")
 })
 
-////////// Edit user
+////////// Edit user BTN
 function editUser (event) {
-  event.stopPropagation();
   addLayer()
-  usersModal.classList.add("open-modal")
+  editUsersModal.classList.add("open-modal")
   
   const editUserID = event.target.parentElement.dataset.id
-
-console.log(editUserID)
-
-  
 }
 
-
+////////// Close modal BTN
+closeModalBtn.forEach( btn => {
+  btn.addEventListener("click", () => {
+    removeLayer()
+    editUsersModal.classList.remove("open-modal")
+  })
+})
 
 
 
@@ -136,6 +137,5 @@ console.log(editUserID)
 
 ////////// Delete user
 function deleteUser (event) {
-  event.stopPropagation();
   addLayer()
 }
