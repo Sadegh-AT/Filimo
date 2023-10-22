@@ -23,11 +23,10 @@ th,td {
 }
 
 svg {
-    cursor: pointer;
+    pointer-events: none;
 }
 
-/* header styles */
-
+/* Header styles */
 .header {
     background: #171717;
     box-shadow: 0 5px 8px -3px hsla(0, 0%, 0%, 0.2);
@@ -69,8 +68,7 @@ svg {
     user-select: none;
 }
 
-/* search box styles */
-
+/* Search box styles */
 .search-box {
     max-width: 500px;
     min-width: 300px;
@@ -99,8 +97,7 @@ svg {
     border: none;
 }
 
-/* sidenav menu  */
-
+/* Sidenav menu  */
 .navbar {
     position: fixed;
     display: flex;
@@ -179,8 +176,7 @@ svg {
     color: #F89401;
 }    
 
-/* main styles  */
-
+/* Main styles  */
 .main {
     max-width: 1600px;
     position: fixed;
@@ -210,8 +206,7 @@ svg {
     display: table;
 }
 
-/* users table styles */
-
+/* Users table styles */
 .users-box{
     overflow-y: auto;
     height: 544px;
@@ -233,8 +228,11 @@ svg {
     background: #a06000; 
 }
 
-/* comments table styles */
+.edit-user-btn, .delete-user-btn {
+    cursor: pointer;
+}
 
+/* Comments table styles */
 .comments-box {
     max-width: 300px;
     white-space: nowrap;
@@ -244,6 +242,33 @@ svg {
     cursor: pointer;
 }
 
+/* MODALS */
+.users-modal.open-modal {
+    transform: translate3d(0,-50%,0);
+}
+
+/* Users edit modal styles */
+.users-modal {
+    width: 800px;
+    height: 500px;
+    background: #242424;
+    position: relative;
+    z-index: 1111;
+    margin: 0 auto;
+    overflow-y: auto;
+    transform: translate3d(0,-210%,0);
+    transition: transform .6s cubic-bezier(.19,1,.22,1);
+}
+
+
+
+
+
+
+
+
+
+/* Comments modal styles */
 .comments-modal {
     width: 600px;
     height: auto;
@@ -251,10 +276,10 @@ svg {
     background: #242424;
     position: relative;
     z-index: 1111;
-    right: 478px;
-    top: 55px;
     overflow-y: auto;
-    display: none;
+    margin: 0 auto;
+    transform: translate3d(0,-210%,0);
+    transition: transform .5s cubic-bezier(.19,1,.22,1);
 }
 
 .comments-modal__head {
@@ -272,7 +297,7 @@ svg {
     user-select: none;
 }
 
-.close-modal {
+.close-modal__head__btn {
     margin-bottom: 9px;
     cursor: pointer;
 }
@@ -289,10 +314,7 @@ svg {
     text-align: right;
 }
 
-
-
 /* Blure dark layer styles */
-
 .layer {
     position: fixed;
     top: 0;
@@ -310,4 +332,5 @@ svg {
 .active {
     visibility: visible;
     opacity: 1;
+    transition-delay: 0s;
 }
