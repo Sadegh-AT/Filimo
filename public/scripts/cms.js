@@ -4,23 +4,21 @@ const layer = $.querySelector(".layer");
 ////////// GET TOKEN for API requests
 
 const authorData = {
-  phone:"09977777777",
-  password:"345678"
-}
+  phone: "09977777777",
+  password: "345678",
+};
 
-async function authorLogin (authorData)
-{
-  console.log(authorData)
-  const respons = await fetch("https://filimo-copy.iran.liara.run/auth/login",
-  {
-  method: "POST",
-  headers: {"Content-Type": "application/json",},
-  body: JSON.stringify(authorData)
-  }); 
-  const post = await respons.json()
-  const token = await getUsers(post.token)
+async function authorLogin(authorData) {
+  console.log(authorData);
+  const respons = await fetch("https://filimo-copy.iran.liara.run/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(authorData),
+  });
+  const post = await respons.json();
+  const token = await getUsers(post.token);
 }
-authorLogin (authorData)
+authorLogin(authorData);
 
 ////////// Side navbar toggle tabs
 let tabBtns = $.querySelectorAll(".navbar__box__ul__items");
@@ -28,48 +26,44 @@ let tabContents = $.querySelectorAll(".content");
 let activeBtn = null;
 let activeContent = null;
 
-for (let i = 0; i < tabBtns.length ;i++) {
-
+for (let i = 0; i < tabBtns.length; i++) {
   tabBtns[i].addEventListener("click", () => {
-
     activeBtn = $.querySelector(".active.navbar__box__ul__items");
     activeContent = $.querySelector(".active.content");
     activeBtn.classList.remove("active");
     activeContent.classList.remove("active");
     tabBtns[i].classList.add("active");
     tabContents[i].classList.add("active");
-
   });
 }
 
 ////////// GET all users
-const usersBox = $.querySelector(".users-box")
-const usersTableBody = $.querySelector(".users-table__body")
+const usersBox = $.querySelector(".users-box");
+const usersTableBody = $.querySelector(".users-table__body");
 
-async function getUsers (token){
-  try{
-    console.log(token)
-    const res = await fetch("https://filimo-copy.iran.liara.run/user", 
-    {
+async function getUsers(token) {
+  try {
+    console.log(token);
+    const res = await fetch("https://filimo-copy.iran.liara.run/user", {
       method: "GET",
-      headers:{
-        Authorazition: token,
+      headers: {
+        Authorization: token,
       },
-    })
-    const posts = await res.json() 
-    usersTableGerator (posts)
-  }
-  catch(err){
+    });
+    const posts = await res.json();
+    usersTableGerator(posts);
+  } catch (err) {
     // console.log(err)
   }
 }
 
 ////////// Add users to table
-function usersTableGerator (users)
-{
-  users.forEach(user => {
-    console.log(user)
-    usersTableBody.insertAdjacentHTML('afterbegin',`
+function usersTableGerator(users) {
+  users.forEach((user) => {
+    console.log(user);
+    usersTableBody.insertAdjacentHTML(
+      "afterbegin",
+      `
     <tr scope="row" data-id="${user._id}">
       <td onclick="deleteUser(event)">
         <svg  width="18px" height="18px" viewBox="-10.5 0 141 141" fill="#F89401">
@@ -93,46 +87,26 @@ function usersTableGerator (users)
       <td>${user.email}</td>
       <td>${user.fullName}</td>
     </tr>
-    `)
+    `
+    );
   });
 }
 
 ////////// Add layer
-function addLayer () {
+function addLayer() {
   layer.classList.add("active");
 }
 
 ////////// Remove layer
-function removeLayer () {
+function removeLayer() {
   layer.classList.remove("active");
 }
 
 ////////// Edit user
-function editUser (event) {
-// console.log(event.target)
-
+function editUser(event) {
+  // console.log(event.target)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Delete user
 
-function deleteUser (event) {
-}
+function deleteUser(event) {}
