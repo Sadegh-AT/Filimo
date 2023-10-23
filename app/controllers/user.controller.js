@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const { UserModel } = require("../models/user.model");
 const createError = require("http-errors");
 const { validatorHandler } = require("../utils/error-handler");
+
 async function getAllUser(req, res, next) {
   try {
     const users = await UserModel.aggregate([
@@ -71,10 +72,72 @@ async function editUser(req, res, next) {
     next(error);
   }
 }
+async function searchUser(req, res, next) {
+  try {
+    let { method, text } = req.query;
+    if (!text) throw createError.BadRequest("please enter text");
+    text = text.toString().replace("+", " ").trim();
+    const reg = new RegExp(text, "gi");
+    const users = await UserModel.aggregate([
+      {
+        $project: {
+          fullName: { $concat: ["$first_name", " ", "$last_name"] },
+          email: 1,
+          username: 1,
+          phone: 1,
+          isSubscription: 1,
+          registerDate: 1,
+        },
+      },
+    ]);
+    switch (method) {
+      case "username":
+        searchUserByUsername(users, reg, req, res, next);
+        break;
 
+      case "phone":
+        searchUserByPhone(users, reg, req, res, next);
+        break;
+
+      case "name":
+        searchUserByName(users, reg, req, res, next);
+        break;
+
+      default:
+        throw createError.BadRequest("please select search method");
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+async function searchUserByUsername(users, reg, req, res, next) {
+  try {
+    const seachedUsers = users.filter((user) => user.username.match(reg));
+    res.send(seachedUsers);
+  } catch (error) {
+    next(error);
+  }
+}
+async function searchUserByPhone(users, reg, req, res, next) {
+  try {
+    const seachedUsers = users.filter((user) => user.phone.match(reg));
+    res.send(seachedUsers);
+  } catch (error) {
+    next(error);
+  }
+}
+async function searchUserByName(users, reg, req, res, next) {
+  try {
+    const seachedUsers = users.filter((user) => user.fullName.match(reg));
+    res.send(seachedUsers);
+  } catch (error) {
+    next(error);
+  }
+}
 module.exports = {
   getAllUser,
   getUser,
   deleteUserById,
   editUser,
+  searchUser,
 };
