@@ -3,6 +3,7 @@ const { UserModel } = require("../models/user.model");
 const createError = require("http-errors");
 const { validatorHandler } = require("../utils/error-handler");
 
+// get all users
 async function getAllUser(req, res, next) {
   try {
     const users = await UserModel.aggregate([
@@ -22,6 +23,8 @@ async function getAllUser(req, res, next) {
     next(createError.InternalServerError(error.message));
   }
 }
+
+// get one user
 async function getUser(req, res, next) {
   try {
     const user = await UserModel.findById(req.params.id, {
@@ -36,6 +39,8 @@ async function getUser(req, res, next) {
     next(createError.InternalServerError(error.message));
   }
 }
+
+// delete user by id
 async function deleteUserById(req, res, next) {
   try {
     const { id } = req.params;
@@ -47,6 +52,8 @@ async function deleteUserById(req, res, next) {
     next(createError.InternalServerError(error.message));
   }
 }
+
+// edit user
 async function editUser(req, res, next) {
   try {
     const error = validationResult(req);
@@ -72,6 +79,8 @@ async function editUser(req, res, next) {
     next(error);
   }
 }
+
+// seach user
 async function searchUser(req, res, next) {
   try {
     let { method, text } = req.query;
@@ -110,6 +119,8 @@ async function searchUser(req, res, next) {
     next(error);
   }
 }
+
+// search methods
 async function searchUserByUsername(users, reg, req, res, next) {
   try {
     const seachedUsers = users.filter((user) => user.username.match(reg));
