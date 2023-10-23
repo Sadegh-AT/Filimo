@@ -12,6 +12,8 @@ const usersTableBody = $.querySelector(".users-table__body");
 const editUsersModal = $.querySelector(".edit-users-modal");
 const commentsModal = $.querySelector(".comments-modal");
 const closeModalBtn = $.querySelectorAll(".close-modal__head__btn");
+const editUserModalTitle = $.querySelector(".user-fullName");
+
 
 ////////// Side navbar toggle tabs
 for (let i = 0; i < tabBtns.length; i++) {
@@ -53,8 +55,8 @@ async function getUsers (token) {
         Authorization: token,
       },
     });
-    const allUsers = await res.json();
-    usersTableGerator (allUsers);
+    const post = await res.json()
+    usersTableGerator (post);
 }
 
 ////////// Add users to table
@@ -112,7 +114,6 @@ layer.addEventListener("click", () => {
 function editUser (event) {
   addLayer()
   editUsersModal.classList.add("open-modal")
-  
   const editUserID = event.target.parentElement.dataset.id
 }
 
