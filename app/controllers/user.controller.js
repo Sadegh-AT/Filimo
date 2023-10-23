@@ -6,9 +6,6 @@ async function getAllUser(req, res, next) {
   try {
     const users = await UserModel.aggregate([
       {
-        $sort: { createdAt: -1 },
-      },
-      {
         $project: {
           fullName: { $concat: ["$first_name", " ", "$last_name"] },
           email: 1,
