@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     watched_movie: { type: Array, default: [mongoose.Types.ObjectId] },
     liked_movie: { type: Array, default: [mongoose.Types.ObjectId] },
-    comments: { type: [mongoose.Types.ObjectId] },
+    comments: { type: [mongoose.Types.ObjectId], ref: "comments" },
   },
   {
     timestamps: true,

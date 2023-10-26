@@ -32,7 +32,7 @@ async function getUser(req, res, next) {
       createdAt: 0,
       updatedAt: 0,
       roles: 0,
-    });
+    }).populate("comments");
 
     res.send(user);
   } catch (error) {

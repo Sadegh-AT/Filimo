@@ -1,4 +1,4 @@
-const CommentModel = require("../models/comment.model");
+const { CommentModel } = require("../models/comment.model");
 const { UserModel } = require("../models/user.model");
 const PersianDate = require("../utils/persianDate");
 const createError = require("http-errors");
