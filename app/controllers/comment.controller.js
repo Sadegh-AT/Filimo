@@ -3,23 +3,29 @@ const { UserModel } = require("../models/user.model");
 const PersianDate = require("../utils/persianDate");
 const createError = require("http-errors");
 
-async function createComment(req, res, next) {
-  const { text } = req.body;
-  const { _id, first_name, last_name } = req.user;
+async function createComment(req, res, next, args) {
+  try {
+    const { text } = args;
+    const { _id, first_name, last_name } = req.user;
 
-  const comment = {
-    userId: _id,
-    fullName: `${first_name} ${last_name}`,
-    text,
-    date: new PersianDate().now(),
-    movieId: null,
-  };
-  const commentMongo = await CommentModel.create(comment);
-  await UserModel.findOneAndUpdate(
-    { _id },
-    { $push: { comments: commentMongo._id } }
-  );
-  res.send({ message: "Comment Created" });
+    if (!text) throw createError.BadRequest("please enter text");
+    const comment = {
+      userId: _id,
+      fullName: `${first_name} ${last_name}`,
+      text,
+      date: new PersianDate().now(),
+      movieId: null,
+    };
+    const commentMongo = await CommentModel.create(comment);
+    await UserModel.findOneAndUpdate(
+      { _id },
+      { $push: { comments: commentMongo._id } }
+    );
+    return { message: "Comment Created" };
+    // res.send({ message: "Comment Created" });
+  } catch (error) {
+    throw error;
+  }
 }
 async function getAllComment(req, res, next) {
   try {
