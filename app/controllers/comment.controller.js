@@ -21,8 +21,8 @@ async function createComment(req, res, next, args) {
       { _id },
       { $push: { comments: commentMongo._id } }
     );
-    return { message: "Comment Created" };
-    // res.send({ message: "Comment Created" });
+    // return { message: "Comment Created" };
+    res.send({ message: "Comment Created" });
   } catch (error) {
     throw error;
   }

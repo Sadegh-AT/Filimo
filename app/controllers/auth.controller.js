@@ -56,8 +56,7 @@ async function login(req, res, next) {
 
       const tokenStratgy = `Bearer ${token}`;
 
-     
-
+      res.cookie("jwtToken", tokenStratgy);
       res.send({ message: "login successfully", token: tokenStratgy });
     }
   } catch (error) {
