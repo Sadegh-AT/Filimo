@@ -18,6 +18,8 @@ const deleteUserModal = $.querySelector(".delete-user-modal");
 const deleteUserModalYesBtn = $.querySelector(".delete-user-modal__conainer__btns--yes");
 const deleteUserModalNoBtn = $.querySelector(".delete-user-modal__conainer__btns--no");
 
+let token 
+
 
 ////////// Side navbar toggle tabs
 for (let i = 0; i < tabBtns.length; i++) {
@@ -46,7 +48,9 @@ async function authorLogin (authorData) {
     body: JSON.stringify (authorData),
   });
   const post = await respons.json();
-  const token = await getUsers (post.token);
+  token = await post.token
+  getUsers (token)
+
 }
 authorLogin (authorData)
 
@@ -72,6 +76,7 @@ async function getUsers (token) {
 
 ////////// Add users to table
 function usersTableGerator (users) {
+  usersTableBody.innerHTML = ""
 
   users.forEach( user => {
     usersTableBody.insertAdjacentHTML(
@@ -143,25 +148,28 @@ function deleteUser (event) {
   addLayer()
   deleteUserModal.classList.add("open-modal")
   let userID = event.target.parentElement.dataset.id
-  console.log( event)
 
   deleteUserModalYesBtn.addEventListener("click", function () {
 
     // User delete request
-        async function deleteUser () {
-          const res = await fetch(`https://filimo-copy.iran.liara.run/user/delete/${userID}`, 
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: token,
-            },
-          })
-          console.log(res)
-        }  
+      deleteUserRequest(token, userID)
+      getUsers (token) 
+      deleteUserModal.classList.remove("open-modal")
+      removeLayer ()
   })
-  deleteUser ()
 
   // deleteUserModalNoBtn.addEventListener("click", function () {
 
   // })
 }
+
+async function deleteUserRequest (token, userID) {
+  const res = await fetch(`https://filimo-copy.iran.liara.run/user/delete/${userID}`, 
+  {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  })
+  console.log(res)
+} 
