@@ -13,7 +13,10 @@ const editUsersModal = $.querySelector(".edit-users-modal");
 const commentsModal = $.querySelector(".comments-modal");
 const closeModalBtn = $.querySelectorAll(".close-modal__head__btn");
 const editUserModalTitle = $.querySelector(".user-fullName");
-const deleteUserModal = $.querySelector(".delete-user-modal")
+const deleteUserModal = $.querySelector(".delete-user-modal");
+
+const deleteUserModalYesBtn = $.querySelector(".delete-user-modal__conainer__btns--yes");
+const deleteUserModalNoBtn = $.querySelector(".delete-user-modal__conainer__btns--no");
 
 
 ////////// Side navbar toggle tabs
@@ -121,7 +124,7 @@ layer.addEventListener("click", () => {
 
 ////////// Edit user BTN
 function editUser (event) {
-  const editUserID = event.target.parentElement.dataset.id
+  const userID = event.target.parentElement.dataset.id
   // getSpecificUsers (editUserID)
   addLayer()
   editUsersModal.classList.add("open-modal")
@@ -135,20 +138,30 @@ closeModalBtn.forEach( btn => {
   })
 })
 
-
-
-
-
-
-
-
-
-
-
-
 ////////// Delete user
 function deleteUser (event) {
   addLayer()
   deleteUserModal.classList.add("open-modal")
+  let userID = event.target.parentElement.dataset.id
+  console.log( event)
 
+  deleteUserModalYesBtn.addEventListener("click", function () {
+
+    // User delete request
+        async function deleteUser () {
+          const res = await fetch(`https://filimo-copy.iran.liara.run/user/delete/${userID}`, 
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: token,
+            },
+          })
+          console.log(res)
+        }  
+  })
+  deleteUser ()
+
+  // deleteUserModalNoBtn.addEventListener("click", function () {
+
+  // })
 }
