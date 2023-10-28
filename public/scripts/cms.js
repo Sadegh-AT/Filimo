@@ -13,6 +13,7 @@ const editUsersModal = $.querySelector(".edit-users-modal");
 const commentsModal = $.querySelector(".comments-modal");
 const closeModalBtn = $.querySelectorAll(".close-modal__head__btn");
 const editUserModalTitle = $.querySelector(".user-fullName");
+const deleteUserModal = $.querySelector(".delete-user-modal")
 
 
 ////////// Side navbar toggle tabs
@@ -58,6 +59,13 @@ async function getUsers (token) {
     const post = await res.json()
     usersTableGerator (post);
 }
+
+////////// GET specific user
+// async function getSpecificUsers (userID) {
+
+//   const res = await fetch(`https://filimo-copy.iran.liara.run/user/find/${userID}`)
+
+// }
 
 ////////// Add users to table
 function usersTableGerator (users) {
@@ -107,14 +115,16 @@ function removeLayer () {
 ////////// Remove layer by click on layer
 layer.addEventListener("click", () => {
   removeLayer()
-  editUsersModal.classList.remove("open-modal")
+  const openedModal = $.querySelector(".open-modal")
+  openedModal.classList.remove("open-modal");
 })
 
 ////////// Edit user BTN
 function editUser (event) {
+  const editUserID = event.target.parentElement.dataset.id
+  // getSpecificUsers (editUserID)
   addLayer()
   editUsersModal.classList.add("open-modal")
-  const editUserID = event.target.parentElement.dataset.id
 }
 
 ////////// Close modal BTN
@@ -139,4 +149,6 @@ closeModalBtn.forEach( btn => {
 ////////// Delete user
 function deleteUser (event) {
   addLayer()
+  deleteUserModal.classList.add("open-modal")
+
 }

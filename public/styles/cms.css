@@ -260,11 +260,42 @@ svg {
     transform: translate3d(0,-50%,0);
 }
 
-.comments-modal.open-modal {
+.delete-user-modal.open-modal{
+    transform: translate3d(0,-264%,0);
+}
+
+.comments-modal.open-modal{
     transform: translate3d(0,-50%,0);
 }
 
-/* Users edit modal styles */
+.modal__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 20px;
+    padding-top: 12px;
+    border-bottom: 1px solid gray;
+}
+
+.modal__head__title {
+    color: aliceblue;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+.close-modal__head__btn {
+    margin-bottom: 9px;
+    cursor: pointer;
+}
+
+.modal__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 15px;
+}
+
+/* Edit user modal styles */
 .edit-users-modal {
     width: 800px;
     height: 500px;
@@ -273,6 +304,7 @@ svg {
     z-index: 1111;
     margin: 0 auto;
     overflow-y: auto;
+    border-radius: 10px;
     transform: translate3d(0,-210%,0);
     transition: transform .6s cubic-bezier(.19,1,.22,1);
 }
@@ -312,7 +344,6 @@ svg {
     border: 1px solid var(--border);
 }
 
-
 .required {
     color: red;
 }
@@ -339,6 +370,109 @@ svg {
     padding: 7px 50px;
 }
 
+/* Delete users modal styles */
+.delete-user-modal {
+    width: 400px;
+    height: 250px;
+    background: #242424;
+    position: relative;
+    z-index: 1111;
+    margin: 0 auto;
+    overflow-y: auto;
+    border-radius: 10px;
+    transform: translate3d(0,-450%,0);
+    transition: transform .6s cubic-bezier(.19,1,.22,1);
+}
+
+.delete-user-modal__conainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.delete-user-modal__conainer__content {
+    margin-bottom: 20px;
+}
+
+.delete-user-modal__conainer__content span{
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.delete-user-modal__conainer__btns--yes {
+    background: transparent;
+    border: 2px solid #F89401;
+    color: #F89401;
+    padding: 5px 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.delete-user-modal__conainer__btns--yes span {
+
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: #F89401;
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+.delete-user-modal__conainer__btns--yes:hover {
+    color: #fff;
+}
+
+.delete-user-modal__conainer__btns--yes:hover span {
+    transform: translateY(0) scale(2);
+}
+
+.delete-user-modal__conainer__btns--yes span:nth-child(1) {
+    --n: 1;
+}
+
+.delete-user-modal__conainer__btns--yes span:nth-child(2) {
+    --n: 2;
+}
+
+.delete-user-modal__conainer__btns--yes span:nth-child(3) {
+    --n: 3;
+}
+
+.delete-user-modal__conainer__btns--yes span:nth-child(4) {
+    --n: 4;
+}
+
+.delete-user-modal__conainer__btns--no {
+    background: #F89401;
+    color: #fff;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-right: 6px;
+    transition: all 0.4s;
+    border-left: 2px solid #F89401;
+    border-right: 2px solid #F89401;
+    border-bottom: none;
+    border-top: none;
+}
+
+.delete-user-modal__conainer__btns--no:hover {
+    background: transparent;
+    color: #F89401;
+    border-left: 2px solid #F89401;
+    border-right: 2px solid #F89401;
+
+}
 
 
 
@@ -354,33 +488,6 @@ svg {
     margin: 0 auto;
     transform: translate3d(0,-210%,0);
     transition: transform .5s cubic-bezier(.19,1,.22,1);
-}
-
-.modal__head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 15px;
-    padding-top: 8px;
-    border-bottom: 1px solid gray;
-}
-
-.modal__head__title {
-    color: aliceblue;
-    font-size: 1.5rem;
-    user-select: none;
-}
-
-.close-modal__head__btn {
-    margin-bottom: 9px;
-    cursor: pointer;
-}
-
-.modal__body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 15px;
 }
 
 .comments-modal__body__content {
