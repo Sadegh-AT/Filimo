@@ -3,9 +3,9 @@ const { UserModel } = require("../models/user.model");
 const PersianDate = require("../utils/persianDate");
 const createError = require("http-errors");
 
-async function createComment(req, res, next, args) {
+async function createComment(req, res, next) {
   try {
-    const { text } = args;
+    const { text } = req.body;
     const { _id, first_name, last_name } = req.user;
 
     if (!text) throw createError.BadRequest("please enter text");
@@ -43,9 +43,10 @@ async function searchComment(req, res, next) {
     const reg = new RegExp(text, "gi");
     const comments = await CommentModel.find({}, { __v: 0, movieId: 0 });
 
-    const searchedComment = comments.filter((comment) =>
+    const searchedComment = await comments.filter((comment) =>
       comment.text.match(reg)
     );
+
     res.send(searchedComment);
   } catch (error) {
     next(error);
