@@ -14,8 +14,12 @@ const commentsModal = $.querySelector(".comments-modal");
 const closeModalBtn = $.querySelectorAll(".close-modal__head__btn");
 const deleteUserModal = $.querySelector(".delete-user-modal");
 
-const deleteUserModalYesBtn = $.querySelector(".delete-user-modal__conainer__btns--yes");
-const deleteUserModalNoBtn = $.querySelector(".delete-user-modal__conainer__btns--no");
+const deleteUserModalYesBtn = $.querySelector(
+  ".delete-user-modal__conainer__btns--yes"
+);
+const deleteUserModalNoBtn = $.querySelector(
+  ".delete-user-modal__conainer__btns--no"
+);
 
 let token;
 
@@ -25,10 +29,8 @@ const editUserModalUserName = $.querySelector("#user-name");
 const editUserModalEmail = $.querySelector("#email");
 const editUserModalPhone = $.querySelector("#phone");
 
-
 ////////// Side navbar toggle tabs
 for (let i = 0; i < tabBtns.length; i++) {
-
   tabBtns[i].addEventListener("click", () => {
     activeBtn = $.querySelector(".active.navbar__box__ul__items");
     activeContent = $.querySelector(".active.content");
@@ -45,38 +47,36 @@ const authorData = {
   password: "345678",
 };
 
-async function authorLogin (authorData) {
-
+async function authorLogin(authorData) {
   const respons = await fetch("https://filimo-copy.iran.liara.run/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify (authorData),
+    body: JSON.stringify(authorData),
   });
   const post = await respons.json();
-  token = await post.token
-  getUsers (token)
+  token = await post.token;
+  getUsers(token);
   // getComments (token)
 }
-authorLogin (authorData)
+authorLogin(authorData);
 
 ////////// GET all users
-async function getUsers (token) {
-
-    const res = await fetch("https://filimo-copy.iran.liara.run/user", {
-      method: "GET",
-      headers: {
-        Authorization: token,
-      },
-    });
-    const post = await res.json()
-    usersTableGerator (post);
+async function getUsers(token) {
+  const res = await fetch("https://filimo-copy.iran.liara.run/user", {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  });
+  const post = await res.json();
+  usersTableGerator(post);
 }
 
 ////////// Add users to table
-function usersTableGerator (users) {
-  usersTableBody.innerHTML = ""
+function usersTableGerator(users) {
+  usersTableBody.innerHTML = "";
 
-  users.forEach( user => {
+  users.forEach((user) => {
     usersTableBody.insertAdjacentHTML(
       "afterbegin",
       `
@@ -109,96 +109,98 @@ function usersTableGerator (users) {
 }
 
 ////////// Add layer
-function addLayer () {
+function addLayer() {
   layer.classList.add("active");
 }
 
 ////////// Remove layer
-function removeLayer () {
+function removeLayer() {
   layer.classList.remove("active");
 }
 
 ////////// Remove layer by click on layer
 layer.addEventListener("click", () => {
-  removeLayer()
-  const openedModal = $.querySelector(".open-modal")
+  removeLayer();
+  const openedModal = $.querySelector(".open-modal");
   openedModal.classList.remove("open-modal");
-})
+});
 
 ////////// Edit user BTN
-function editUser (event) {
-  const userID = event.target.parentElement.dataset.id
-  getSpecificUsers (userID)
-  addLayer()
-  editUsersModal.classList.add("open-modal")
+function editUser(event) {
+  const userID = event.target.parentElement.dataset.id;
+  getSpecificUsers(userID);
+  addLayer();
+  editUsersModal.classList.add("open-modal");
 }
 
 //////// GET specific user
-async function getSpecificUsers (userID) {
+async function getSpecificUsers(userID) {
+  const res = await fetch(
+    `https://filimo-copy.iran.liara.run/user/find/${userID}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  const post = await res.json();
 
-  const res = await fetch(`https://filimo-copy.iran.liara.run/user/find/${userID}`,
-  {
-    method: "GET",
-    headers: {
-      Authorization: token,
-    },
-  })
-  const post = await res.json()
-  addInfoToEditModal(post)
+  addInfoToEditModal(post);
 }
 
 //////// Here, the information taken from the backend is displayed inside the fields
-function addInfoToEditModal (userInfo) {
-  editUserModalFirstName.value = userInfo.first_name
-  editUserModalLastName.value = userInfo.last_name
-  editUserModalUserName.value = userInfo.username
-  editUserModalEmail.value = userInfo.email
-  editUserModalPhone.value = userInfo.phone
+function addInfoToEditModal(userInfo) {
+  editUserModalFirstName.value = userInfo.first_name;
+  editUserModalLastName.value = userInfo.last_name;
+  editUserModalUserName.value = userInfo.username;
+  editUserModalEmail.value = userInfo.email;
+  editUserModalPhone.value = userInfo.phone;
 
-
-  console.log()
+  console.log();
 }
 ////////// Close modal BTN
-closeModalBtn.forEach( btn => {
+closeModalBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
-    removeLayer()
-    editUsersModal.classList.remove("open-modal")
-  })
-})
+    removeLayer();
+    editUsersModal.classList.remove("open-modal");
+  });
+});
 
 ////////// Delete user
-function deleteUser (event) {
-  addLayer()
-  deleteUserModal.classList.add("open-modal")
-  let userID = event.target.parentElement.dataset.id
+function deleteUser(event) {
+  addLayer();
+  deleteUserModal.classList.add("open-modal");
+  let userID = event.target.parentElement.dataset.id;
 
   deleteUserModalYesBtn.addEventListener("click", function () {
-
     // User delete request
-      deleteUserRequest(token, userID)
-      getUsers (token) 
-      deleteUserModal.classList.remove("open-modal")
-      removeLayer ()
-  })
+    deleteUserRequest(token, userID);
+    getUsers(token);
+    deleteUserModal.classList.remove("open-modal");
+    removeLayer();
+  });
 
   deleteUserModalNoBtn.addEventListener("click", function () {
-    deleteUserModal.classList.remove("open-modal")
-    removeLayer ()
-  })
+    deleteUserModal.classList.remove("open-modal");
+    removeLayer();
+  });
 }
 
-async function deleteUserRequest (token, userID) {
-  const res = await fetch(`https://filimo-copy.iran.liara.run/user/delete/${userID}`, 
-  {
-    method: "DELETE",
-    headers: {
-      Authorization: token,
-    },
-  })
-  const post = await res.json()
-  console.log(post)
-  console.log(res)
-} 
+async function deleteUserRequest(token, userID) {
+  const res = await fetch(
+    `https://filimo-copy.iran.liara.run/user/delete/${userID}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  const post = await res.json();
+  console.log(post);
+  console.log(res);
+}
 
 ////////// Get all comments
 // async function getComments (token) {
