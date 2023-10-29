@@ -1,24 +1,26 @@
 const { GraphQLList, GraphQLString } = require("graphql");
 const { CommnetType } = require("../typeDefs/comment.type");
-const { createComment } = require("../../controllers/comment.controller");
+const {
+  createCommentGraphQL,
+} = require("../../controllers/comment.controller");
 const {
   verifyAccessTokenInGraphQL,
 } = require("../../middleware/verifyAccessToken.js");
 const { ResponseType } = require("../typeDefs/response.type");
 
 const CreateComment = {
-  type: CommnetType,
+  type: ResponseType,
   args: {
     text: { type: GraphQLString },
   },
-  
-  //! fix response message
+
   resolve: async (_, args, context) => {
     const { req, res } = context;
     await verifyAccessTokenInGraphQL(req, res);
-    const resault = await createComment(req, res, _, args);
+    const { message } = await createCommentGraphQL(req, res, args);
     return {
-      data: "asdsad",
+      statusCode: res.statusCode,
+      message,
     };
   },
 };
