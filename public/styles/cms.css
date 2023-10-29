@@ -328,18 +328,19 @@ svg {
 }
 
 .modal__body__form__item label {
-    margin-bottom: 3px;
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 .modal__body__form__item input {
     padding: 0 15px;
     max-width: 100%;
     width: 100%;
-    height: 38px;
+    height: 40px;
     background: #171717;
     box-shadow: none;
-    color: #777;
-    font-size: 1.1rem;
+    color: #ededed;
+    font-size: 0.9rem;
     border-radius: 5px;
     border: 1px solid var(--border);
 }
@@ -459,7 +460,7 @@ svg {
     padding: 5px 12px;
     border-radius: 5px;
     margin-right: 6px;
-    transition: all 0.4s;
+    transition: all 0.3s;
     border-left: 2px solid #F89401;
     border-right: 2px solid #F89401;
     border-bottom: none;
