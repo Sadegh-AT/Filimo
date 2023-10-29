@@ -7,6 +7,7 @@ const { validatorHandler } = require("../utils/error-handler");
 async function getAllUser(req, res, next) {
   try {
     const users = await UserModel.aggregate([
+      { $match: { roles: { $ne: ["USER", "ADMIN"] } } },
       {
         $project: {
           fullName: { $concat: ["$first_name", " ", "$last_name"] },
@@ -15,6 +16,7 @@ async function getAllUser(req, res, next) {
           phone: 1,
           isSubscription: 1,
           registerDate: 1,
+          roles: 1,
         },
       },
     ]);
