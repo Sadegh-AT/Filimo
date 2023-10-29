@@ -11,6 +11,10 @@ router.use("/auth", authRoutes);
 router.use("/user", verifyAccessToken, userRoutes);
 router.use("/comment", verifyAccessToken, commentRoutes);
 router.use("/graphql", graphqlHTTP(graphqlConfig));
+
+//! payment route is uncomplte
+router.use("/payment", verifyAccessToken, commentRoutes);
+
 module.exports = {
   AllRoutes: router,
 };
