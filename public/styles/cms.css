@@ -274,12 +274,13 @@ svg {
     justify-content: space-between;
     margin: 0 20px;
     padding-top: 12px;
+    padding-bottom: 4px;
     border-bottom: 1px solid gray;
 }
 
 .modal__head__title {
     color: aliceblue;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     user-select: none;
 }
 
@@ -354,6 +355,23 @@ svg {
     align-items: center;
     justify-content: center;
     margin-top: 29px;
+}
+
+.modal__body__form__item--checkbox label {
+    color: #fff;
+    margin-bottom: 13px;
+    margin-right: 5px;
+}
+
+.modal__body__form__item--checkbox div {
+    display: flex;
+    align-items: center;
+}
+
+.modal__body__form__item--checkbox div span {
+    color: #a1a1a1;
+    font-size: 0.8rem;
+    margin-right: 4px;
 }
 
 .modal__body__form--submit-changes button {

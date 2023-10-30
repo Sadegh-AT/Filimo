@@ -24,6 +24,8 @@ const editUserModalLastName = $.querySelector("#last-name");
 const editUserModalUserName = $.querySelector("#user-name");
 const editUserModalEmail = $.querySelector("#email");
 const editUserModalPhone = $.querySelector("#phone");
+const subscriptionCheckbox = $.querySelector("#subscription-checkbox");
+const editUserModalSubmitBtn = $.querySelector(".edit-users-submit-btn");
 
 
 ////////// Side navbar toggle tabs
@@ -47,12 +49,12 @@ const authorData = {
 
 async function authorLogin (authorData) {
 
-  const respons = await fetch("https://filimo-copy.iran.liara.run/auth/login", {
+  const res = await fetch("https://filimo-copy.iran.liara.run/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify (authorData),
   });
-  const post = await respons.json();
+  const post = await res.json();
   token = await post.token
   getUsers (token)
   // getComments (token)
@@ -131,7 +133,40 @@ function editUser (event) {
   getSpecificUsers (userID)
   addLayer()
   editUsersModal.classList.add("open-modal")
+
+  //add click event on submit btn
+  editUserModalSubmitBtn.addEventListener("click", function(){
+
+    const newData = {
+      first_name:  editUserModalFirstName.value,
+      last_name: editUserModalLastName.value,
+      username: editUserModalUserName.value,
+      phone: editUserModalPhone.value,
+      email: editUserModalEmail.value,
+      isSubscription: subscriptionCheckbox.checked,
+    }
+
+    console.log(typeof(newData.isSubscription))
+
+    async function submitChanges () {
+      const res = await fetch(`https://filimo-copy.iran.liara.run/user/edit/${userID}` ,
+      {
+        method: "PUT",
+        headers:{
+          Authorization: token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify (newData)
+      })
+      const post = await res.json();
+      getUsers (token)
+    }
+    submitChanges ()
+    removeLayer ()
+    editUsersModal.classList.remove("open-modal")
+  })
 }
+
 
 //////// GET specific user
 async function getSpecificUsers (userID) {
@@ -155,8 +190,6 @@ function addInfoToEditModal (userInfo) {
   editUserModalEmail.value = userInfo.email
   editUserModalPhone.value = userInfo.phone
 
-
-  console.log()
 }
 ////////// Close modal BTN
 closeModalBtn.forEach( btn => {
@@ -196,8 +229,6 @@ async function deleteUserRequest (token, userID) {
     },
   })
   const post = await res.json()
-  console.log(post)
-  console.log(res)
 } 
 
 ////////// Get all comments
