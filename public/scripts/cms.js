@@ -160,6 +160,7 @@ function addInfoToEditModal (userInfo) {
   editUserModalPhone.value = userInfo.phone
 
 
+  
   console.log()
 }
 ////////// Close modal BTN
