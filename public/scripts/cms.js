@@ -151,6 +151,7 @@ async function getSpecificUsers(userID) {
   addInfoToEditModal(post);
 }
 
+
 //////// Here, the information taken from the backend is displayed inside the fields
 function addInfoToEditModal (userInfo) {
   editUserModalFirstName.value = userInfo.first_name
