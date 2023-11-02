@@ -145,6 +145,7 @@ function editUser (event) {
       email: editUserModalEmail.value,
       isSubscription: subscriptionCheckbox.checked,
     }
+    console.log(newData.isSubscription)
 
     console.log(typeof(newData.isSubscription))
 
@@ -189,7 +190,7 @@ function addInfoToEditModal (userInfo) {
   editUserModalUserName.value = userInfo.username
   editUserModalEmail.value = userInfo.email
   editUserModalPhone.value = userInfo.phone
-
+  subscriptionCheckbox.checked = userInfo.isSubscription ? true : false
 }
 ////////// Close modal BTN
 closeModalBtn.forEach( btn => {
@@ -228,7 +229,9 @@ async function deleteUserRequest (token, userID) {
       Authorization: token,
     },
   })
+  console.log(res)
   const post = await res.json()
+  console.log(post)
 } 
 
 ////////// Get all comments
