@@ -14,7 +14,7 @@ class Application {
     this.configDatabase(DB_URL);
     this.createServer(PORT);
     this.createRoutes();
-    this.errorHandler();
+    this.errorHandler(); //gvsdrf
   }
   configServer() {
     app.use(express.static(path.join(__dirname, "public")));
