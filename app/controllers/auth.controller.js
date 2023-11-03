@@ -45,20 +45,19 @@ async function login(req, res, next) {
     const user = await UserModel.findOne({ phone });
     if (!user) throw createError.Unauthorized("phone or password is incorrect");
 
-    if (comparePassword(password, user.password)) {
-      const token = signToken({
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-        isSubscription: user.isSubscription,
-        loginTime: new PersianDate().now(),
-      });
+    if (!comparePassword(password, user.password))
+      throw createError.Unauthorized("phone or password is incorrect");
 
-      const tokenStratgy = `Bearer ${token}`;
-
-      res.cookie("jwtToken", tokenStratgy);
-      res.send({ message: "login successfully", token: tokenStratgy });
-    }
+    const token = signToken({
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+      isSubscription: user.isSubscription,
+      loginTime: new PersianDate().now(),
+    });
+    const tokenStratgy = `Bearer ${token}`;
+    res.cookie("jwtToken", tokenStratgy);
+    res.send({ message: "login successfully", token: tokenStratgy });
   } catch (error) {
     next(error);
   }
