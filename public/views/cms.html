@@ -148,10 +148,38 @@
 
     <!-- Page content box -->
     <main class="main">
-        <div class="main-container">
 
-            <!-- Users table -->
-            <table class="content active users-table table table-striped table-dark table-hover">
+        <div class="main-container content active">
+
+            <div class="usersSearchBar">
+                <div class="usersSearchBar__dropdown">
+                    <div class="usersSearchBar__dropdown--title">
+                        <span>Search by...</span>
+                        <svg width="20px" height="20px" viewBox="0 0 16 16" version="1.1">
+                            <path fill="#a06000" d="M8 12l-6.32-6.32 1.67-1.68 4.65 4.65 4.65-4.65 1.67 1.68-6.32 6.32z"></path>
+                        </svg>
+                    </div>
+
+                    <ul class="usersSearchBar__dropdown-list">
+                        <li class="usersSearchBar__dropdown-list-item">Full name</li>
+                        <li class="usersSearchBar__dropdown-list-item">User name</li>
+                        <li class="usersSearchBar__dropdown-list-item">Phone</li>
+                    </ul> 
+
+                </div>
+
+
+                <div class="usersSearchBar__box">
+                    <input type="text" placeholder="Who do you looking for??">
+                    <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" >
+                        <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>
+                    </svg>
+                </div>
+
+            </div>
+
+            <!-- Users table start -->
+            <table class="users-table table table-striped table-dark table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Delete</th>         
@@ -168,9 +196,12 @@
                     <!-- Users items -->
                 </tbody>
             </table>
+            <!-- Users table end -->
+        </div>
 
-            <!-- Comments -->
-            <table class="content table table-striped table-dark table-hover">
+        <div class="main-container content">
+            <!-- Comments start -->
+            <table class="table table-striped table-dark table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Reject</th>
@@ -221,15 +252,15 @@
 
                 </tbody>
             </table>
-
+            <!-- Comments end -->
         </div>
+        
     </main>
 
 
 <!-------------- ALL MODALS -------------->
 
-    <!-- Comments modal -->
-
+    <!-- Comments modal start -->
     <div class="comments-modal">
         <div class="modal__head">
             <h3 class="modal__head__title">Full text</h3>
@@ -244,8 +275,10 @@
             </span>
         </div>
     </div>
+    <!-- Comments modal end -->
 
-    <!-- Edit users modal -->
+
+    <!-- Edit users modal strat -->
     <div class="edit-users-modal">
         <div class="modal__head">
             <h3 class="modal__head__title">ویرایش کاربر</h3>
@@ -312,7 +345,10 @@
             </div>
         </div>
     </div>
+    <!-- Edit users modal end -->
 
+
+    <!-- Delete users modal strat -->
     <div class="delete-user-modal">
         <div class="delete-user-modal__conainer">
             <div class="delete-user-modal__conainer__icon">
@@ -340,6 +376,9 @@
             </div>
         </div>
     </div>
+    <!-- Delete users modal end -->
+
+
 
     <!-- BLURE DARK LAYER -->
     <div class="layer">

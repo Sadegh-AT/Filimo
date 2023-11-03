@@ -27,6 +27,13 @@ const editUserModalPhone = $.querySelector("#phone");
 const subscriptionCheckbox = $.querySelector("#subscription-checkbox");
 const editUserModalSubmitBtn = $.querySelector(".edit-users-submit-btn");
 
+const userSearchDropdownBtn = $.querySelector(".usersSearchBar__dropdown--title");
+const userSearchDropdownlist = $.querySelector(".usersSearchBar__dropdown-list");
+
+userSearchDropdownBtn.addEventListener('click', function () {
+  userSearchDropdownlist.classList.toggle('show')
+})
+
 
 ////////// Side navbar toggle tabs
 for (let i = 0; i < tabBtns.length; i++) {
@@ -57,7 +64,7 @@ async function authorLogin (authorData) {
   const post = await res.json();
   token = await post.token
   getUsers (token)
-  // getComments (token)
+  getComments (token)
 }
 authorLogin (authorData)
 
@@ -235,15 +242,15 @@ async function deleteUserRequest (token, userID) {
 } 
 
 ////////// Get all comments
-// async function getComments (token) {
+async function getComments (token) {
 
-//   const res = await fetch("https://filimo-copy.iran.liara.run/comment",
-//   {
-//     method: "GET",
-//     headers: {
-//       Authorization: token,
-//     },
-//   });
-//   const post = await res.json()
-//   console.log (post);
-// }
+  const res = await fetch("https://filimo-copy.iran.liara.run/comment",
+  {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  });
+  const post = await res.json()
+  console.log (post);
+}
