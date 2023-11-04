@@ -341,13 +341,11 @@ svg {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    direction: ltr;
     cursor: pointer;
 }
 
 .reject-comment-btn {
     background: #EE0000;
-    color: #fff;
     font-size: 1rem;
     font-weight: 500;
     padding: 3px 15px;
@@ -358,7 +356,6 @@ svg {
 
 .accept-comment-btn{
     background: #009900;
-    color: #fff;
     font-size: 1rem;
     font-weight: 500;
     padding: 3px 15px;

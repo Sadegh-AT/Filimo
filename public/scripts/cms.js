@@ -9,16 +9,15 @@ let activeContent = null;
 const usersBox = $.querySelector(".users-box");
 const usersTableBody = $.querySelector(".users-table__body");
 
-const editUsersModal = $.querySelector(".edit-users-modal");
-const commentsModal = $.querySelector(".comments-modal");
 const closeModalBtn = $.querySelectorAll(".close-modal__head__btn");
-const deleteUserModal = $.querySelector(".delete-user-modal");
 
+const deleteUserModal = $.querySelector(".delete-user-modal");
 const deleteUserModalYesBtn = $.querySelector(".delete-user-modal__conainer__btns--yes");
 const deleteUserModalNoBtn = $.querySelector(".delete-user-modal__conainer__btns--no");
 
 let token;
 
+const editUsersModal = $.querySelector(".edit-users-modal");
 const editUserModalFirstName = $.querySelector("#first-name");
 const editUserModalLastName = $.querySelector("#last-name");
 const editUserModalUserName = $.querySelector("#user-name");
@@ -30,7 +29,10 @@ const editUserModalSubmitBtn = $.querySelector(".edit-users-submit-btn");
 const userSearchDropdownBtn = $.querySelector(".usersSearchBar__dropdown--title");
 const userSearchDropdownlist = $.querySelector(".usersSearchBar__dropdown-list");
 
+const commentsModal = $.querySelector(".comments-modal");
 const commentsTableBody = $.querySelector(".comments-table__body");
+const commentsTexttBox = $.querySelector(".comments-box");
+
 
 ////////// User search bar
 userSearchDropdownBtn.addEventListener('click', function () {
@@ -267,10 +269,15 @@ function commentGenerator (comments) {
       "afterbegin", `                    
       <tr scope="row" data-comment-id="${comment._id}">
         <td>
-            <button class="reject-comment-btn">Reject</button>
+            <button class="reject-comment-btn">
+              <svg width="20px" height="20px" viewBox="0 0 20 20" fill="#fff"><rect x="0" fill="none" width="20" height="20"/><g><path d="M12.12 10l3.53 3.53-2.12 2.12L10 12.12l-3.54 3.54-2.12-2.12L7.88 10 4.34 6.46l2.12-2.12L10 7.88l3.54-3.53 2.12 2.12z"/></g>
+              </svg>
+            </button>
         </td>
         <td>
-            <button class="accept-comment-btn">Accept</button>
+            <button class="accept-comment-btn">
+              <svg fill="#fff" width="20px" height="20px" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="true"><path d="m 13,4.1974 q 0,0.3097 -0.21677,0.5265 l -5.60517,5.6051 -1.0529,1.0529 q -0.21677,0.2168 -0.52645,0.2168 -0.30968,0 -0.52645,-0.2168 L 4.01935,10.329 1.21677,7.5264 Q 1,7.3097 1,7 1,6.6903 1.21677,6.4735 L 2.26968,5.4206 q 0.21677,-0.2167 0.52645,-0.2167 0.30968,0 0.52645,0.2167 l 2.27613,2.2839 5.07871,-5.0864 q 0.21677,-0.2168 0.52645,-0.2168 0.30968,0 0.52645,0.2168 L 12.78323,3.671 Q 13,3.8877 13,4.1974 z"/></svg>
+            </button>
         </td>
         <td class="comments-box">${comment.text}</td>
         <td>got</td>
