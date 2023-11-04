@@ -30,10 +30,12 @@ const editUserModalSubmitBtn = $.querySelector(".edit-users-submit-btn");
 const userSearchDropdownBtn = $.querySelector(".usersSearchBar__dropdown--title");
 const userSearchDropdownlist = $.querySelector(".usersSearchBar__dropdown-list");
 
+const commentsTableBody = $.querySelector(".comments-table__body");
+
+////////// User search bar
 userSearchDropdownBtn.addEventListener('click', function () {
   userSearchDropdownlist.classList.toggle('show')
 })
-
 
 ////////// Side navbar toggle tabs
 for (let i = 0; i < tabBtns.length; i++) {
@@ -78,11 +80,11 @@ async function getUsers (token) {
       },
     });
     const post = await res.json()
-    usersTableGerator (post);
+    usersTableGenrator (post);
 }
 
 ////////// Add users to table
-function usersTableGerator (users) {
+function usersTableGenrator (users) {
   usersTableBody.innerHTML = ""
 
   users.forEach( user => {
@@ -252,5 +254,31 @@ async function getComments (token) {
     },
   });
   const post = await res.json()
-  console.log (post);
+  commentGenerator(post)
 }
+
+////////// Comments generator
+
+function commentGenerator (comments) {
+  commentsTableBody.innerHTML= ""
+
+  comments.forEach(comment => {
+    commentsTableBody.insertAdjacentHTML(
+      "afterbegin", `                    
+      <tr scope="row" data-comment-id="${comment._id}">
+        <td>
+            <button class="reject-comment-btn">Reject</button>
+        </td>
+        <td>
+            <button class="accept-comment-btn">Accept</button>
+        </td>
+        <td class="comments-box">${comment.text}</td>
+        <td>got</td>
+        <td>${comment.date}</td>
+        <td>${comment.fullName}</td>
+      </tr>
+`)
+console.log(comment._id)
+  })
+}
+
