@@ -156,7 +156,7 @@
                     <div class="usersSearchBar__dropdown--title">
                         <span>Search by...</span>
                         <svg width="20px" height="20px" viewBox="0 0 16 16" version="1.1">
-                            <path fill="#a06000" d="M8 12l-6.32-6.32 1.67-1.68 4.65 4.65 4.65-4.65 1.67 1.68-6.32 6.32z"></path>
+                            <path fill="#fff" d="M8 12l-6.32-6.32 1.67-1.68 4.65 4.65 4.65-4.65 1.67 1.68-6.32 6.32z"></path>
                         </svg>
                     </div>
 
@@ -165,9 +165,7 @@
                         <li class="usersSearchBar__dropdown-list-item">User name</li>
                         <li class="usersSearchBar__dropdown-list-item">Phone</li>
                     </ul> 
-
                 </div>
-
 
                 <div class="usersSearchBar__box">
                     <input type="text" placeholder="Who do you looking for??">
@@ -179,19 +177,13 @@
             </div>
             <!-- User search bar end -->
 
+            <!-- loder start -->
+            <span class="loader"></span>
+            <!-- loder end -->
+
             <!-- Users table start -->
             <table class="users-table table table-striped table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Delete</th>         
-                        <th scope="col">Edit</th>
-                        <th scope="col">Register date</th>
-                        <th scope="col">Subscription</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">User name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Full name</th>
-                    </tr>
+                <thead class="users-table__head">
                 </thead>
                 <tbody class="users-table__body">
                     <!-- Users items -->

@@ -7,6 +7,7 @@ let activeBtn = null;
 let activeContent = null;
 
 const usersBox = $.querySelector(".users-box");
+const usersTableHead = $.querySelector(".users-table__head");
 const usersTableBody = $.querySelector(".users-table__body");
 
 const closeModalBtn = $.querySelectorAll(".close-modal__head__btn");
@@ -31,8 +32,8 @@ const userSearchDropdownlist = $.querySelector(".usersSearchBar__dropdown-list")
 
 const commentsModal = $.querySelector(".comments-modal");
 const commentsTableBody = $.querySelector(".comments-table__body");
-const commentsTexttBox = $.querySelector(".comments-box");
 
+const usersTableLoader = $.querySelector(".loader");
 
 ////////// User search bar
 userSearchDropdownBtn.addEventListener('click', function () {
@@ -82,12 +83,26 @@ async function getUsers (token) {
       },
     });
     const post = await res.json()
+    usersTableLoader.classList.add("disabel")
     usersTableGenrator (post);
 }
 
 ////////// Add users to table
 function usersTableGenrator (users) {
   usersTableBody.innerHTML = ""
+
+  usersTableHead.insertAdjacentHTML("afterbegin",`  
+    <tr>
+      <th scope="col">Delete</th>         
+      <th scope="col">Edit</th>
+      <th scope="col">Register date</th>
+      <th scope="col">Subscription</th>
+      <th scope="col">Phone</th>
+      <th scope="col">User name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Full name</th>
+    </tr>
+  `)
 
   users.forEach( user => {
     usersTableBody.insertAdjacentHTML(
@@ -270,13 +285,13 @@ function commentGenerator (comments) {
       <tr scope="row" data-comment-id="${comment._id}">
         <td>
             <button class="reject-comment-btn">
-              <svg width="20px" height="20px" viewBox="0 0 20 20" fill="#fff"><rect x="0" fill="none" width="20" height="20"/><g><path d="M12.12 10l3.53 3.53-2.12 2.12L10 12.12l-3.54 3.54-2.12-2.12L7.88 10 4.34 6.46l2.12-2.12L10 7.88l3.54-3.53 2.12 2.12z"/></g>
+              <svg width="20px" height="20px" viewBox="0 0 20 20" fill="#F89401"><rect x="0" fill="none" width="20" height="20"/><g><path d="M12.12 10l3.53 3.53-2.12 2.12L10 12.12l-3.54 3.54-2.12-2.12L7.88 10 4.34 6.46l2.12-2.12L10 7.88l3.54-3.53 2.12 2.12z"/></g>
               </svg>
             </button>
         </td>
         <td>
             <button class="accept-comment-btn">
-              <svg fill="#fff" width="20px" height="20px" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="true"><path d="m 13,4.1974 q 0,0.3097 -0.21677,0.5265 l -5.60517,5.6051 -1.0529,1.0529 q -0.21677,0.2168 -0.52645,0.2168 -0.30968,0 -0.52645,-0.2168 L 4.01935,10.329 1.21677,7.5264 Q 1,7.3097 1,7 1,6.6903 1.21677,6.4735 L 2.26968,5.4206 q 0.21677,-0.2167 0.52645,-0.2167 0.30968,0 0.52645,0.2167 l 2.27613,2.2839 5.07871,-5.0864 q 0.21677,-0.2168 0.52645,-0.2168 0.30968,0 0.52645,0.2168 L 12.78323,3.671 Q 13,3.8877 13,4.1974 z"/></svg>
+              <svg fill="#F89401" width="20px" height="20px" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="true"><path d="m 13,4.1974 q 0,0.3097 -0.21677,0.5265 l -5.60517,5.6051 -1.0529,1.0529 q -0.21677,0.2168 -0.52645,0.2168 -0.30968,0 -0.52645,-0.2168 L 4.01935,10.329 1.21677,7.5264 Q 1,7.3097 1,7 1,6.6903 1.21677,6.4735 L 2.26968,5.4206 q 0.21677,-0.2167 0.52645,-0.2167 0.30968,0 0.52645,0.2167 l 2.27613,2.2839 5.07871,-5.0864 q 0.21677,-0.2168 0.52645,-0.2168 0.30968,0 0.52645,0.2168 L 12.78323,3.671 Q 13,3.8877 13,4.1974 z"/></svg>
             </button>
         </td>
         <td class="comments-box">${comment.text}</td>
@@ -284,8 +299,7 @@ function commentGenerator (comments) {
         <td>${comment.date}</td>
         <td>${comment.fullName}</td>
       </tr>
-`)
-console.log(comment._id)
+    `)
   })
 }
 

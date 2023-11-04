@@ -212,7 +212,7 @@ svg {
 
 .main-container {
     width: 95%;
-    height: 88%;
+    height: 92%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -237,7 +237,7 @@ svg {
     direction: ltr;
     height: 35px;
     background: #ededed;
-    margin: 3px 0px 20px 1px;
+    margin: 0 0 20px 1px;
     width: 65%;
 }
 
@@ -344,22 +344,10 @@ svg {
     cursor: pointer;
 }
 
-.reject-comment-btn {
-    background: #EE0000;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 3px 15px;
-    border: 0;
-    outline: 0;
-    border-radius: 15px;
-}
-
-.accept-comment-btn{
-    background: #009900;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 3px 15px;
-    border: 0;
+.reject-comment-btn,.accept-comment-btn {
+    border: 2px solid #F89401;
+    background: transparent;
+    padding: 0 10px;
     outline: 0;
     border-radius: 15px;
 }
@@ -644,4 +632,37 @@ svg {
     transition-delay: 0s;
 }
 
+/* Loder style start */
+.loader {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: block;
+    margin:15px auto;
+    position: relative;
+    top: 30%;
+    background: #FFF;
+    box-shadow: -24px 0 #FFF, 24px 0 #FFF;
+    box-sizing: border-box;
+    animation: shadowPulse 2s linear infinite;
+  }
 
+  .loader.disabel {
+    display: none;
+  }
+  
+  @keyframes shadowPulse {
+    33% {
+      background: #FFF;
+      box-shadow: -24px 0 #F89401, 24px 0 #FFF;
+    }
+    66% {
+      background: #F89401;
+      box-shadow: -24px 0 #FFF, 24px 0 #FFF;
+    }
+    100% {
+      background: #FFF;
+      box-shadow: -24px 0 #FFF, 24px 0 #F89401;
+    }
+  }
+/* Loder style end */
