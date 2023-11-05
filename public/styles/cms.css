@@ -312,7 +312,7 @@ svg {
 
 .users-table {
     margin: 0;
-    min-height: 206px;
+    height: auto;
 }
 
 .main-container::-webkit-scrollbar{
@@ -666,3 +666,10 @@ svg {
     }
   }
 /* Loder style end */
+
+.cloes-search-table{
+    display: none;
+    position: absolute;
+    right: 28px;
+    top: 22px;
+}
