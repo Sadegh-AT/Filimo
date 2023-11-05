@@ -35,9 +35,15 @@ const commentsTableBody = $.querySelector(".comments-table__body");
 
 const usersTableLoader = $.querySelector(".loader");
 
+const usersSearchInput = $.querySelector(".usersSearchBar__box input");
+
 ////////// User search bar
 userSearchDropdownBtn.addEventListener('click', function () {
   userSearchDropdownlist.classList.toggle('show')
+
+  if(userSearchDropdownlist.classList.contains("show")){
+    selectMethodSearch()
+  }
 })
 
 ////////// Side navbar toggle tabs
@@ -51,6 +57,11 @@ for (let i = 0; i < tabBtns.length; i++) {
     tabBtns[i].classList.add("active");
     tabContents[i].classList.add("active");
   });
+}
+
+////////// Stop the loader
+function stopedLoader (){
+  usersTableLoader.classList.add("disabel")
 }
 
 ////////// GET TOKEN for API requests
@@ -83,7 +94,7 @@ async function getUsers (token) {
       },
     });
     const post = await res.json()
-    usersTableLoader.classList.add("disabel")
+    stopedLoader ()
     usersTableGenrator (post);
 }
 
@@ -302,4 +313,43 @@ function commentGenerator (comments) {
     `)
   })
 }
+// return e.target.dataset.searchmethod
+function selectMethodSearch() {
+  const searchUserMetodItems = $.querySelectorAll(".usersSearchBar__dropdown-list-item")
+
+  searchUserMetodItems.forEach( function (metodItem) {
+
+    metodItem.addEventListener("click", findMethode)
+  })
+
+}
+function findMethode (event) {
+    return event.target.dataset.searchmethod
+}
+
+////////// Search users
+usersSearchInput.addEventListener('input', function(event) {
+    clearTimeout(timeout);
+
+    const inputValue = event.target.value;
+
+    
+    let obj = {
+      method: selectMethodSearch(),
+      text: inputValue,
+    };    
+    
+    console.log(obj)
+    timeout = setTimeout(function() {
+        search(obj);
+    }, 500);
+});
+
+async function search(obj) {
+  
+  const queryString =
+    "https://filimo-copy.iran.liara.run/user/search?" +
+    new URLSearchParams(obj).toString();
+}
+
 
