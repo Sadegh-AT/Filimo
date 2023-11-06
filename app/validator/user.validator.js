@@ -27,7 +27,10 @@ const editUserValidator = () => [
     .isMobilePhone("fa-IR")
     .withMessage("Ensure phone value is Persian Format"),
 
-  body("isSubscription").isBoolean().withMessage("just true or false value"),
+  body("isSubscription")
+    .optional()
+    .isBoolean()
+    .withMessage("just true or false value"),
 ];
 
 module.exports = {

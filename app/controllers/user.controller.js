@@ -73,7 +73,8 @@ async function editUser(req, res, next) {
         email: email ? email : user.email,
         username: username ? username : user.username,
         phone: phone ? phone : user.phone,
-        isSubscription: isSubscription ? isSubscription : user.isSubscription,
+        isSubscription:
+          isSubscription != undefined ? isSubscription : user.isSubscription,
       }
     );
     res.send({ message: "Update User Successfully" });
