@@ -111,7 +111,7 @@ async function searchUser(req, res, next) {
         searchUserByPhone(users, reg, req, res, next);
         break;
 
-      case "name":
+      case "fullname":
         searchUserByName(users, reg, req, res, next);
         break;
 
