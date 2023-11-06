@@ -28,6 +28,7 @@
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "graphql": "^15.8.0",
+    "html-to-text": "^9.0.5",
     "http-errors": "^2.0.0",
     "jalali-moment": "^3.3.11",
     "jsonwebtoken": "^9.0.2",

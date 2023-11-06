@@ -2,12 +2,17 @@ const { CommentModel } = require("../models/comment.model");
 const { UserModel } = require("../models/user.model");
 const PersianDate = require("../utils/persianDate");
 const createError = require("http-errors");
+const htmlToText = require("html-to-text");
 
 async function createComment(req, res, next) {
   try {
-    const { text } = req.body;
+    let { text } = req.body;
     const { _id, first_name, last_name } = req.user;
-
+    console.log(text);
+    text = htmlToText.convert(text, {
+      wordwrap: 100,
+    });
+    console.log("this is text" + text);
     if (!text) throw createError.BadRequest("please enter text");
     const comment = {
       userId: _id,
@@ -24,7 +29,7 @@ async function createComment(req, res, next) {
     // return { message: "Comment Created" };
     res.send({ message: "Comment Created" });
   } catch (error) {
-    throw error;
+    next(error);
   }
 }
 async function createCommentGraphQL(req, res, args) {
