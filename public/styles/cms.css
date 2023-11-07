@@ -232,9 +232,7 @@ svg {
 .usersSearchBar {
     display: flex;
     align-items: center;
-    background: #b15555;
     border-radius: 50px;
-    direction: ltr;
     height: 35px;
     background: #ededed;
     margin: 0 0 20px 1px;
@@ -279,7 +277,7 @@ svg {
 .usersSearchBar__dropdown-list-item {
     font-size: 0.9rem;
     font-weight: 500;
-    text-align: left;
+    text-align: center;
     padding: 10px  0px 6px 12px;
     cursor: pointer;
     transition: all 0.2s;
@@ -293,7 +291,7 @@ svg {
 .usersSearchBar__box {
     display: flex;
     align-items: center;
-    padding-right: 15px;
+    padding: 0px 0px 0px 14px;
     width: 100%;
 
 }
@@ -672,4 +670,5 @@ svg {
     position: absolute;
     right: 28px;
     top: 22px;
+    cursor: pointer;
 }

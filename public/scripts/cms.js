@@ -119,9 +119,9 @@ function usersTableGenrator (users) {
       <th scope="col">Register date</th>
       <th scope="col">Subscription</th>
       <th scope="col">Phone</th>
-      <th scope="col">User name</th>
+      <th scope="col">Username</th>
       <th scope="col">Email</th>
-      <th scope="col">Full name</th>
+      <th scope="col">Fullname</th>
     </tr>
   `)
 
@@ -391,9 +391,9 @@ function addTargetUserToTabel(user) {
     <th scope="col">Register date</th>
     <th scope="col">Subscription</th>
     <th scope="col">Phone</th>
-    <th scope="col">User name</th>
+    <th scope="col">Username</th>
     <th scope="col">Email</th>
-    <th scope="col">Full name</th>
+    <th scope="col">Fullname</th>
   </tr>
 `)
 
