@@ -86,8 +86,12 @@ async function editUser(req, res, next) {
 // seach user
 async function searchUser(req, res, next) {
   try {
+    console.log(allUsers());
     let { method, text } = req.query;
-    if (!text) throw createError.BadRequest("please enter text");
+    if (!text) {
+      res.send(await allUsers());
+      return;
+    }
     text = text.toString().replace("+", " ").trim();
     const reg = new RegExp(text, "gi");
     const users = await UserModel.aggregate([
@@ -116,7 +120,8 @@ async function searchUser(req, res, next) {
         break;
 
       default:
-        throw createError.BadRequest("please select search method");
+        searchUserByName(users, reg, req, res, next);
+        break;
     }
   } catch (error) {
     next(error);
@@ -147,6 +152,23 @@ async function searchUserByName(users, reg, req, res, next) {
   } catch (error) {
     next(error);
   }
+}
+async function allUsers() {
+  const users = await UserModel.aggregate([
+    { $match: { roles: { $ne: ["USER", "ADMIN"] } } },
+    {
+      $project: {
+        fullName: { $concat: ["$first_name", " ", "$last_name"] },
+        email: 1,
+        username: 1,
+        phone: 1,
+        isSubscription: 1,
+        registerDate: 1,
+        roles: 1,
+      },
+    },
+  ]);
+  return users;
 }
 module.exports = {
   getAllUser,
