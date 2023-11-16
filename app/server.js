@@ -6,8 +6,8 @@ const { AllRoutes } = require("./routers/routes");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-const { read } = require("fs");
-
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 class Application {
   constructor(PORT, DB_URL) {
     this.configServer();
@@ -23,6 +23,7 @@ class Application {
     app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+    app.use(cookieParser());
     app.use(morgan("dev"));
   }
 

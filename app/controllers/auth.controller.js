@@ -39,24 +39,26 @@ async function register(req, res, next) {
 }
 async function login(req, res, next) {
   try {
+    const error = validationResult(req);
+    if (error?.errors?.length > 0) throw validatorHandler(error);
     const { phone, password } = req.body;
     const user = await UserModel.findOne({ phone });
     if (!user) throw createError.Unauthorized("phone or password is incorrect");
 
     if (comparePassword(password, user.password)) {
       const token = signToken({
-        id: user._id,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
         isSubscription: user.isSubscription,
         loginTime: new PersianDate().now(),
       });
-      console.log(token);
+
       const tokenStratgy = `Bearer ${token}`;
 
-      res.cookie("jwtToken", tokenStratgy, { maxAge: 900000, httpOnly: true });
-      res.send({ message: "login successfully" });
+     
+
+      res.send({ message: "login successfully", token: tokenStratgy });
     }
   } catch (error) {
     next(error);
